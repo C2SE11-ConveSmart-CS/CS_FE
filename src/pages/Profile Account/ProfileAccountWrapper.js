@@ -83,4 +83,77 @@ export const ProfileAccountWrapper = styled.div`
     padding: 0;
     box-sizing: border-box;
   }
+  .profile-pic {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-pic img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .profile-pic h3 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+        }
+        .profile-pic p {
+            color: #666;
+            margin: 0;
+        }
+        .profile-pic .upload-btn {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #1a73e8;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .profile-pic .upload-btn:hover {
+            background-color: #155ab6;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .form-group input {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[disabled] {
+            background-color: #f0f0f0;
+        }
+        .form-actions {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .form-actions button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-actions .cancel-btn {
+            background-color: #f0f0f0;
+            color: #333;
+            margin-right: 10px;
+        }
+        .form-actions .cancel-btn:hover {
+            background-color: #e0e0e0;
+        }
+        .form-actions .save-btn {
+            background-color: #1a73e8;
+            color: #fff;
+        }
+        .form-actions .save-btn:hover {
+            background-color: #155ab6;
+        }
 `;

@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import { SignInWrapper } from './SignInWrapper'
+import React, { useState } from 'react';
+
 
 const SignIn = () => {
+  const [showPassword, setShowPassword] = useState(false)
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
+  }
   return (
     <SignInWrapper>
       <div className="full-page">
@@ -28,9 +34,15 @@ const SignIn = () => {
               <input placeholder="Enter email or user name" type="text" />
             </div>
             <div className="input-group password">
-              <input placeholder="Password" type="password" />
-              <i className="fas fa-eye password-toggle"></i>
-            </div>
+            <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
+                />
+                <i
+                  className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle`}
+                  onClick={togglePasswordVisibility}
+                />
+              </div>
             <Link className="forgot-password" to="/forgot-password">
               Forgot password ?
             </Link>

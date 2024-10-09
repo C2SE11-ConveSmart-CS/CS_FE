@@ -74,7 +74,7 @@ export const SignInWrapper = styled.div`
     position: absolute;
     right: 20px;
     top: 15px;
-    color: #aaa;
+    color: #555;
   }
   .input-group.password {
     position: relative;

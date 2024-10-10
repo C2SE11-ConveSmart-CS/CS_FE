@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 export const ProfileAccountWrapper = styled.div`
+display: flex;
+  justify-content: center; /* Căn giữa ngang */
+  align-items: center; /* Căn giữa dọc */
+  min-height: 100vh; /* Chiều cao tối thiểu là 100% của màn hình */
+  background-color: #f5f5f5; /* Màu nền để tạo sự phân biệt */
+
   & .container {
     width: 700px;
     background-color: #fff;

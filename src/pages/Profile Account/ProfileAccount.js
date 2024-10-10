@@ -1,7 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ProfileAccountWrapper } from './ProfileAccountWrapper'
+import { Link } from 'react-router-dom'
 
 const ProfileAccount = () => {
+  // Khởi tạo state cho các giá trị form
+  const [firstName, setFirstName] = useState("Thu Hà");
+  const [lastName, setLastName] = useState("Trần");
+  const [phone, setPhone] = useState("0983 264 224");
+  const [email, setEmail] = useState("thuha89@gmail.com");
+
+  // State để lưu dữ liệu đã lưu thành công
+  const [savedFirstName, setSavedFirstName] = useState(firstName);
+  const [savedLastName, setSavedLastName] = useState(lastName);
+  const [savedEmail, setSavedEmail] = useState(email);
+
+  // Hàm lưu dữ liệu
+  const handleSave = () => {
+    // Cập nhật dữ liệu đã lưu với giá trị hiện tại của các state
+    setSavedFirstName(firstName);
+    setSavedLastName(lastName);
+    setSavedEmail(email);
+
+    alert("Thay đổi đã được lưu!");
+  };
+
   return (
     <ProfileAccountWrapper>
       <div className="container">
@@ -16,10 +38,10 @@ const ProfileAccount = () => {
               </a>
             </li>
             <li>
-              <a href="#">
+              <Link to="/ChangePassword">
                 <i className="fas fa-lock" />
                 Mật khẩu
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -32,38 +54,54 @@ const ProfileAccount = () => {
               src="https://storage.googleapis.com/a1aa/image/XLq063JiFMrpHVaXMgU7ZvkSdYeg7cLtFztfHPDZoGqND9kTA.jpg"
               width="100"
             />
-            <h3>Trần Thu Hà</h3>
-            <p>thuha89@gmail.com</p>
+            {/* Hiển thị giá trị đã lưu */}
+            <h3>{savedFirstName} {savedLastName}</h3>
+            <p>{savedEmail}</p>
             <button className="upload-btn">Tải lên ảnh đại diện</button>
           </div>
           <div className="form-group">
             <label htmlFor="username">Tên đăng nhập</label>
-            <input
-              disabled
-              id="username"
-              type="text"
-              value="thuha89@gmail.com"
-            />
+            <input disabled id="username" type="text" value="thuha89@gmail.com" />
           </div>
           <div className="form-group">
             <label htmlFor="first-name">Tên</label>
-            <input id="first-name" type="text" value="Thu Hà" />
+            <input 
+              id="first-name" 
+              type="text" 
+              value={firstName} 
+              onChange={(e) => setFirstName(e.target.value)} // Cập nhật giá trị state
+            />
           </div>
           <div className="form-group">
             <label htmlFor="last-name">Họ</label>
-            <input id="last-name" type="text" value="Trần" />
+            <input 
+              id="last-name" 
+              type="text" 
+              value={lastName} 
+              onChange={(e) => setLastName(e.target.value)} // Cập nhật giá trị state
+            />
           </div>
           <div className="form-group">
             <label htmlFor="phone">Số điện thoại</label>
-            <input id="phone" type="text" value="0983 264 224" />
+            <input 
+              id="phone" 
+              type="text" 
+              value={phone} 
+              onChange={(e) => setPhone(e.target.value)} // Cập nhật giá trị state
+            />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input id="email" type="text" value="thuha89@gmail.com" />
+            <input 
+              id="email" 
+              type="text" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} // Cập nhật giá trị state
+            />
           </div>
           <div className="form-actions">
             <button className="cancel-btn">Hủy</button>
-            <button className="save-btn">Lưu thay đổi</button>
+            <button className="save-btn" onClick={handleSave}>Lưu thay đổi</button> {/* Gọi hàm handleSave */}
           </div>
         </div>
       </div>
@@ -71,4 +109,4 @@ const ProfileAccount = () => {
   )
 }
 
-export default ProfileAccount
+export default ProfileAccount;

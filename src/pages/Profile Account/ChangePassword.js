@@ -1,6 +1,7 @@
 import React from 'react';
 // import './ChangePassword.css';
 import { ChangePasswordWrapper } from './ChangePasswordWrapper';
+import { Link } from 'react-router-dom';
 
 const ChangePassword = () => {
   return (
@@ -11,10 +12,10 @@ const ChangePassword = () => {
         <h2>Hồ sơ của bạn</h2>
         <ul>
           <li>
-            <a href="#" className="account-link">
+            <Link to="/ProfileAccount" className="account-link">
               <i className="fas fa-user" />
               Tài khoản
-            </a>
+            </Link>
           </li>
           <li>
             <a className="active" href="#">

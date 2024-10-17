@@ -6,6 +6,8 @@ import SignIn from './pages/SignIn/SignIn'
 import SignUp from './pages/SignUp/SignUp'
 import ProfileAccount from './pages/Profile Account/ProfileAccount'
 import ChangePassword from './pages/Profile Account/ChangePassword'
+import CustomerList from './pages/CustomerList/CustomerList'
+import Test from './pages/CustomerList/Sidebar'
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/profileaccount" element={<ProfileAccount />} />
         <Route path="/changepassword" element={<ChangePassword />} />
+        <Route path="/customer-list" element={<CustomerList />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   )

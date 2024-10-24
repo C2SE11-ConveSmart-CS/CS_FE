@@ -7,7 +7,7 @@ import SignUp from './pages/SignUp/SignUp'
 import ProfileAccount from './pages/Profile Account/ProfileAccount'
 import ChangePassword from './pages/Profile Account/ChangePassword'
 import ChatInterface from './pages/ChatInterface/ChatInterface'
-
+import Layout from './components/Layout/Layout'
 
 const App = () => {
   return (
@@ -17,9 +17,10 @@ const App = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
-        <Route path="/profileaccount" element={<ProfileAccount />} />
+        <Route path="/profile" element={<ProfileAccount />} />
         <Route path="/changepassword" element={<ChangePassword />} />
         <Route path="/chat" element={<ChatInterface />} />
+        <Route path="/layout" element={<Layout />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

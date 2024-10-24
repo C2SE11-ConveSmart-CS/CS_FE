@@ -1,27 +1,61 @@
-import { Link } from 'react-router-dom'
-import { SignInWrapper } from './SignInWrapper'
+import { Link, useNavigate } from 'react-router-dom';
+import { SignInWrapper } from './SignInWrapper';
 import React, { useState } from 'react';
-
+import axios from 'axios';
 
 const SignIn = () => {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [emailOrUsername, setEmailOrUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Thay thế useHistory bằng useNavigate
+
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword)
-  }
+    setShowPassword(!showPassword);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Ngăn chặn hành vi mặc định của biểu mẫu
+
+    try {
+      const response = await axios.post('http://localhost:5001//api/signin', {
+        email: emailOrUsername, // Sử dụng email hoặc tên đăng nhập
+        password,
+      });
+
+      if (response.status === 200) {
+        // Đăng nhập thành công
+        const { token, userId, username } = response.data;
+        // Lưu token hoặc thông tin người dùng nếu cần thiết
+        localStorage.setItem('token', token); // Lưu token vào localStorage (nếu cần)
+        localStorage.setItem('userId', userId); // Lưu userId vào localStorage
+        localStorage.setItem('username', username); // Lưu username vào localStorage
+        navigate('/ChatInterface'); // Chuyển hướng đến ChatInterface
+      }
+    } catch (error) {
+      // Đăng nhập không thành công
+      if (error.response && error.response.data) {
+        setErrorMessage(error.response.data.message); // Lấy thông điệp lỗi từ phản hồi
+      } else {
+        setErrorMessage('Lỗi máy chủ, vui lòng thử lại sau.'); // Thông báo lỗi chung
+      }
+    }
+  };
+
   return (
     <SignInWrapper>
       <div className="full-page">
         <div className="logo">Your Logo</div>
         <div className="container">
           <div className="left">
-            <h1>Sign in to</h1>
+            <h1>Đăng nhập vào</h1>
             <h2>ConveSmart</h2>
-            <p>If you don't have an account register</p>
+            <p>Nếu bạn chưa có tài khoản, hãy đăng ký</p>
             <p>
-              You can <Link to="/signup">Register here !</Link>
+              Bạn có thể <Link to="/signup">Đăng ký ở đây!</Link>
             </p>
             <img
-              alt="Illustration of a person using a mobile phone"
+              alt="Hình minh họa một người sử dụng điện thoại"
               className="illustration"
               height="498"
               src="Saly-14.png"
@@ -29,41 +63,53 @@ const SignIn = () => {
             />
           </div>
           <div className="right">
-            <h2>Sign in</h2>
-            <div className="input-group">
-              <input placeholder="Enter email or user name" type="text" />
-            </div>
-            <div className="input-group password">
-            <input
+            <h2>Đăng nhập</h2>
+            <form onSubmit={handleLogin}>
+              <div className="input-group">
+                <input
+                  placeholder="Nhập email hoặc tên tài khoản"
+                  type="text"
+                  value={emailOrUsername}
+                  onChange={(e) => setEmailOrUsername(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="input-group password">
+                <input
                   type={showPassword ? 'text' : 'password'}
-                  placeholder="Password"
+                  placeholder="Mật khẩu"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
                 <i
                   className={`fas ${showPassword ? 'fa-eye-slash' : 'fa-eye'} password-toggle`}
                   onClick={togglePasswordVisibility}
                 />
               </div>
-            <Link className="forgot-password" to="/forgot-password">
-              Forgot password ?
-            </Link>
-            <button className="login-btn">Login</button>
-            <div className="continue-with">or continue with</div>
-            <div className="social-icons">
-              <Link to={'/'}>
-                <i className="fab fa-facebook"></i>
+              <Link className="forgot-password" to="/forgot-password">
+                Quên mật khẩu?
               </Link>
-              <Link href="#">
-                <i className="fab fa-apple"></i>
-              </Link>
-              <Link href="#">
-                <i className="fab fa-google"></i>
-              </Link>
-            </div>
+              <button type="submit" className="login-btn">Đăng Nhập</button>
+              {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Hiển thị thông báo lỗi */}
+              <div className="continue-with">hoặc tiếp tục với</div>
+              <div className="social-icons">
+                <Link to={'/'}>
+                  <i className="fab fa-facebook"></i>
+                </Link>
+                <Link href="#">
+                  <i className="fab fa-apple"></i>
+                </Link>
+                <Link href="#">
+                  <i className="fab fa-google"></i>
+                </Link>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </SignInWrapper>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

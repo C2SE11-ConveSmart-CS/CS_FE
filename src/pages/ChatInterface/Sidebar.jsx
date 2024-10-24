@@ -1,40 +1,36 @@
-
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Sidebar.module.css'
 import ChatItem from './ChatItem'
+import axios from 'axios'  // Bạn có thể sử dụng axios hoặc fetch API để gọi API
 
-const chatData = [
-  {
-    avatar:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/4b022afc59366991fdcdc86de0d09941ad8fd229cd5856ac0c6c205be62dcdd1?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-    name: 'Ngọc Hải',
-    message: 'Xin chào shop!',
-    time: '14:24',
-    tags: ['KH VIP'],
-    social: [
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/8757a171b1521839de8631070071001f832c14db0a591474fcf3c26866b90ff4?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/187222d521f6319efdb45c604a68049f64959e018e02a96a7ff4d9849b261961?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/1b30f8e9b580aa2094eba23d21148703ed58ad8563bde539d4afacc5270c7c66?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-    ],
-    isOnline: true,
-  },
-  {
-    avatar:
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/613969dcd79a40c443edb263b7f0609a5735bb4883b3b83852db7ada08ef84e5?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-    name: 'Thảo Nguyễn',
-    message: 'Cần hỗ trợ!',
-    time: '14:24',
-    tags: ['KH VIP', 'Trả hàng'],
-    social: [
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/8757a171b1521839de8631070071001f832c14db0a591474fcf3c26866b90ff4?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/8ee5e497f3820d56960a40640eaabb76c2e8a56e7d3e32c87cf9ab6db7a8bac6?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-      'https://cdn.builder.io/api/v1/image/assets/TEMP/cd0803cdbd6d90e9982add719c01a953fe32b22a9c99aec67046415c9233bc78?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-    ],
-  },
-  // Add more chat data objects here
-]
+const Sidebar = () => {
+  // State để lưu dữ liệu chat
+  const [chatData, setChatData] = useState([])
 
-function Sidebar() {
+  // Sử dụng useEffect để gọi API khi component được mount
+  useEffect(() => {
+    // Gọi API Messenger để lấy danh sách cuộc trò chuyện
+    const fetchChatData = async () => {
+      try {
+        const response = await axios.get(
+          'https://graph.facebook.com/v14.0/me/conversations', // Thay thế bằng endpoint API Messenger thật
+          {
+            params: {
+              access_token: 'YOUR_ACCESS_TOKEN', // Thêm token của bạn
+              fields: 'senders,message_count',  // Bạn có thể điều chỉnh các fields muốn lấy
+            },
+          }
+        )
+        // Cập nhật state với dữ liệu từ API
+        setChatData(response.data.data)
+      } catch (error) {
+        console.error('Lỗi khi gọi API Messenger:', error)
+      }
+    }
+
+    fetchChatData()
+  }, [])  // useEffect sẽ chỉ chạy một lần khi component được mount
+
   return (
     <aside className={styles.sidebar}>
       <header className={styles.header}>
@@ -69,8 +65,18 @@ function Sidebar() {
         </div>
       </header>
       <nav className={styles.chatList}>
+        {/* Hiển thị danh sách cuộc trò chuyện từ API */}
         {chatData.map((chat, index) => (
-          <ChatItem key={index} {...chat} />
+          <ChatItem
+            key={index}
+            avatar={chat.senders.data[0].picture.url}  // Thay đổi theo cấu trúc API
+            name={chat.senders.data[0].name}
+            message={chat.snippet}  // Tin nhắn gần nhất
+            time={new Date(chat.updated_time).toLocaleTimeString()} // Định dạng thời gian
+            tags={[]}  // Thêm tags nếu có
+            social={[]}  // Thêm dữ liệu social nếu có
+            isOnline={false}  // Có thể điều chỉnh nếu có thông tin online
+          />
         ))}
       </nav>
     </aside>

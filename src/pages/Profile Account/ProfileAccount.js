@@ -1,33 +1,42 @@
 import React, { useState } from 'react'
 import { ProfileAccountWrapper } from './ProfileAccountWrapper'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const ProfileAccount = () => {
   // Khởi tạo state cho các giá trị form
-  const [firstName, setFirstName] = useState("Thu Hà");
-  const [lastName, setLastName] = useState("Trần");
-  const [phone, setPhone] = useState("0983 264 224");
-  const [email, setEmail] = useState("thuha89@gmail.com");
+  const [firstName, setFirstName] = useState('Thu Hà')
+  const [lastName, setLastName] = useState('Trần')
+  const [phone, setPhone] = useState('0983 264 224')
+  const [email, setEmail] = useState('thuha89@gmail.com')
 
   // State để lưu dữ liệu đã lưu thành công
-  const [savedFirstName, setSavedFirstName] = useState(firstName);
-  const [savedLastName, setSavedLastName] = useState(lastName);
-  const [savedEmail, setSavedEmail] = useState(email);
+  const [savedFirstName, setSavedFirstName] = useState(firstName)
+  const [savedLastName, setSavedLastName] = useState(lastName)
+  const [savedEmail, setSavedEmail] = useState(email)
+
+  // Sử dụng useNavigate để điều hướng
+  const navigate = useNavigate()
 
   // Hàm lưu dữ liệu
   const handleSave = () => {
-    // Cập nhật dữ liệu đã lưu với giá trị hiện tại của các state
-    setSavedFirstName(firstName);
-    setSavedLastName(lastName);
-    setSavedEmail(email);
+    setSavedFirstName(firstName)
+    setSavedLastName(lastName)
+    setSavedEmail(email)
 
-    alert("Thay đổi đã được lưu!");
-  };
+    alert('Thay đổi đã được lưu!')
+  }
+
+  // Hàm điều hướng khi bấm nút "Exit"
+  const handleExit = () => {
+    navigate('/chat') // Điều hướng về trang /chat
+  }
 
   return (
     <ProfileAccountWrapper>
       <div className="container">
-        <button className="exit-btn">&times;</button>
+        <button className="exit-btn" onClick={handleExit}>
+          &times;
+        </button>
         <div className="sidebar">
           <h2>Hồ sơ của bạn</h2>
           <ul>
@@ -55,53 +64,63 @@ const ProfileAccount = () => {
               width="100"
             />
             {/* Hiển thị giá trị đã lưu */}
-            <h3>{savedFirstName} {savedLastName}</h3>
+            <h3>
+              {savedFirstName} {savedLastName}
+            </h3>
             <p>{savedEmail}</p>
             <button className="upload-btn">Tải lên ảnh đại diện</button>
           </div>
           <div className="form-group">
             <label htmlFor="username">Tên đăng nhập</label>
-            <input disabled id="username" type="text" value="thuha89@gmail.com" />
+            <input
+              disabled
+              id="username"
+              type="text"
+              value="thuha89@gmail.com"
+            />
           </div>
           <div className="form-group">
             <label htmlFor="first-name">Tên</label>
-            <input 
-              id="first-name" 
-              type="text" 
-              value={firstName} 
-              onChange={(e) => setFirstName(e.target.value)} // Cập nhật giá trị state
+            <input
+              id="first-name"
+              type="text"
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)} // Cập nhật giá trị state
             />
           </div>
           <div className="form-group">
             <label htmlFor="last-name">Họ</label>
-            <input 
-              id="last-name" 
-              type="text" 
-              value={lastName} 
-              onChange={(e) => setLastName(e.target.value)} // Cập nhật giá trị state
+            <input
+              id="last-name"
+              type="text"
+              value={lastName}
+              onChange={e => setLastName(e.target.value)} // Cập nhật giá trị state
             />
           </div>
           <div className="form-group">
             <label htmlFor="phone">Số điện thoại</label>
-            <input 
-              id="phone" 
-              type="text" 
-              value={phone} 
-              onChange={(e) => setPhone(e.target.value)} // Cập nhật giá trị state
+            <input
+              id="phone"
+              type="text"
+              value={phone}
+              onChange={e => setPhone(e.target.value)} // Cập nhật giá trị state
             />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input 
-              id="email" 
-              type="text" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} // Cập nhật giá trị state
+            <input
+              id="email"
+              type="text"
+              value={email}
+              onChange={e => setEmail(e.target.value)} // Cập nhật giá trị state
             />
           </div>
           <div className="form-actions">
             <button className="cancel-btn">Hủy</button>
-            <button className="save-btn" onClick={handleSave}>Lưu thay đổi</button> {/* Gọi hàm handleSave */}
+            <button className="save-btn" onClick={handleSave}>
+              Lưu thay đổi
+            </button>{' '}
+            {/* Gọi hàm handleSave */}
           </div>
         </div>
       </div>
@@ -109,4 +128,4 @@ const ProfileAccount = () => {
   )
 }
 
-export default ProfileAccount;
+export default ProfileAccount

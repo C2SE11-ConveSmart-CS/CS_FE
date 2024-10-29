@@ -1,46 +1,42 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { SignInWrapper } from './SignInWrapper';
-import React, { useState } from 'react';
-import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom'
+import { SignInWrapper } from './SignInWrapper'
+import React, { useContext, useState } from 'react'
+import { signIn } from '../../services/api/authen'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const SignIn = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [emailOrUsername, setEmailOrUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const navigate = useNavigate(); // Thay thế useHistory bằng useNavigate
+  const { reloadUser } = useContext(AuthContext)
+  const [showPassword, setShowPassword] = useState(false)
+  const [emailOrUsername, setEmailOrUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
+  const navigate = useNavigate() // Thay thế useHistory bằng useNavigate
 
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
+    setShowPassword(!showPassword)
+  }
 
-  const handleLogin = async (e) => {
-    e.preventDefault(); // Ngăn chặn hành vi mặc định của biểu mẫu
+  const handleLogin = async e => {
+    e.preventDefault() // Ngăn chặn hành vi mặc định của biểu mẫu
 
     try {
-      const response = await axios.post('http://localhost:5001//api/signin', {
-        email: emailOrUsername, // Sử dụng email hoặc tên đăng nhập
+      const data = await signIn({
+        email: emailOrUsername,
         password,
-      });
-
-      if (response.status === 200) {
-        // Đăng nhập thành công
-        const { token, userId, username } = response.data;
-        // Lưu token hoặc thông tin người dùng nếu cần thiết
-        localStorage.setItem('token', token); // Lưu token vào localStorage (nếu cần)
-        localStorage.setItem('userId', userId); // Lưu userId vào localStorage
-        localStorage.setItem('username', username); // Lưu username vào localStorage
-        navigate('/ChatInterface'); // Chuyển hướng đến ChatInterface
+      })
+      if (data) {
+        reloadUser()
+        navigate('/') // Chuyển hướng đến ChatInterface
       }
     } catch (error) {
       // Đăng nhập không thành công
       if (error.response && error.response.data) {
-        setErrorMessage(error.response.data.message); // Lấy thông điệp lỗi từ phản hồi
+        setErrorMessage(error.response.data.message) // Lấy thông điệp lỗi từ phản hồi
       } else {
-        setErrorMessage('Lỗi máy chủ, vui lòng thử lại sau.'); // Thông báo lỗi chung
+        setErrorMessage('Lỗi máy chủ, vui lòng thử lại sau.') // Thông báo lỗi chung
       }
     }
-  };
+  }
 
   return (
     <SignInWrapper>
@@ -70,7 +66,7 @@ const SignIn = () => {
                   placeholder="Nhập email hoặc tên tài khoản"
                   type="text"
                   value={emailOrUsername}
-                  onChange={(e) => setEmailOrUsername(e.target.value)}
+                  onChange={e => setEmailOrUsername(e.target.value)}
                   required
                 />
               </div>
@@ -79,7 +75,7 @@ const SignIn = () => {
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Mật khẩu"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={e => setPassword(e.target.value)}
                   required
                 />
                 <i
@@ -90,8 +86,11 @@ const SignIn = () => {
               <Link className="forgot-password" to="/forgot-password">
                 Quên mật khẩu?
               </Link>
-              <button type="submit" className="login-btn">Đăng Nhập</button>
-              {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Hiển thị thông báo lỗi */}
+              <button type="submit" className="login-btn">
+                Đăng Nhập
+              </button>
+              {errorMessage && <p className="error-message">{errorMessage}</p>}{' '}
+              {/* Hiển thị thông báo lỗi */}
               <div className="continue-with">hoặc tiếp tục với</div>
               <div className="social-icons">
                 <Link to={'/'}>
@@ -109,7 +108,7 @@ const SignIn = () => {
         </div>
       </div>
     </SignInWrapper>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

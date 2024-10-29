@@ -4,17 +4,13 @@
 import React from 'react'
 import styles from './ChatHeader.module.css'
 
-function ChatHeader() {
+function ChatHeader({ avatar, name }) {
   return (
     <header className={styles.header}>
       <div className={styles.userInfo}>
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/b5502215fef566aca72e6addf682035f19ffe47bccebc548892d5a5270958015?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa"
-          alt="Minh Min's avatar"
-          className={styles.avatar}
-        />
+        <img src={avatar} alt={`${name}'s Avatar`} className={styles.avatar} />
         <div className={styles.nameActivity}>
-          <h2 className={styles.name}>Minh Min</h2>
+          <h2 className={styles.name}>{name}</h2>
           <p className={styles.activity}>
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/10e75312fccd5a5be153750b953d7928e3c25513c4b0003af5ffc2ea94f420cc?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa"

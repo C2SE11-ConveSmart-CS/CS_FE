@@ -6,18 +6,23 @@ import SignIn from './pages/SignIn/SignIn'
 import SignUp from './pages/SignUp/SignUp'
 import ProfileAccount from './pages/Profile Account/ProfileAccount'
 import ChangePassword from './pages/Profile Account/ChangePassword'
+import ChatInterface from './pages/ChatInterface/ChatInterface'
+import { DashboardLayout } from './pages/dashboard/components/DashboardLayout'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/SignIn" element={<SignIn />} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/Forgotpassword" element={<ForgotPassword />} />
+        <Route path="/Profile" element={<ProfileAccount />} />
+        <Route path="/ChangePassword" element={<ChangePassword />} />
+        <Route path="/Convesation" element={<ChatInterface />} />
+        <Route path="/Dashboard" element={<DashboardLayout />} />
+
         <Route path="*" element={<NotFound />} />
-        <Route path="/profileaccount" element={<ProfileAccount />} />
-        <Route path="/changepassword" element={<ChangePassword />} />
       </Routes>
     </BrowserRouter>
   )

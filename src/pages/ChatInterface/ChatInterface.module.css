@@ -1,0 +1,37 @@
+
+.chatInterface {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Media query for responsive layout */
+@media (max-width: 991px) {
+  .chatInterface {
+    flex-direction: column;
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chatContent {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.chatSidebar {
+  width: 20%;
+}
+
+.chatMain {
+  flex-grow: 2;
+  padding: 20px;
+}
+
+.chatInfo {
+  width: 20%;
+}

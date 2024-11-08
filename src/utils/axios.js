@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-export const baseURL =
-  'https://4b43-2405-4802-a185-2780-d1af-da91-823c-95ad.ngrok-free.app'
+export const baseURL = 'http://localhost:5001'
 
 const customFetch = axios.create({
   baseURL: `${baseURL}/api/`,

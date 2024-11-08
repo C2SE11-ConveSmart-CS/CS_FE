@@ -30,7 +30,7 @@ const SignIn = () => {
       }
     } catch (error) {
       // Đăng nhập không thành công
-      if (error.response && error.response.data) {
+      if (error && error.response && error.response.data) {
         setErrorMessage(error.response.data.message) // Lấy thông điệp lỗi từ phản hồi
       } else {
         setErrorMessage('Lỗi máy chủ, vui lòng thử lại sau.') // Thông báo lỗi chung

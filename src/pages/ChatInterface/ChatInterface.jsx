@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './ChatInterface.module.css'
 import ChatSidebar from './ChatSidebar'
 import ChatMain from './ChatMain'
@@ -8,19 +8,20 @@ import { ChatContext } from '../../contexts/ChatsContext'
 
 function ChatInterface() {
   const { selectedConversation } = useContext(ChatContext)
+  const [currentUserId, setCurrentUserId] = useState("")
 
   return (
     <Layout>
       <div className={styles.container}>
         {/* Bố trí phần chính của giao diện chat */}
         <div className={styles.chatContent}>
-          <ChatSidebar className={styles.chatSidebar} />
+          <ChatSidebar className={styles.chatSidebar} prop={{setCurrentUserId}}/>
           {selectedConversation ? (
-            <ChatMain className={styles.chatMain} />
+            <ChatMain className={styles.chatMain} prop={{currentUserId}} />
           ) : (
-            <div className={styles.chatMain}>Please select conversation</div>
+            <div className={styles.chatMain}>Select conversation</div>
           )}
-          <ChatInfo className={styles.chatInfo} />
+          {/* <ChatInfo className={styles.chatInfo} /> */}
         </div>
       </div>
     </Layout>

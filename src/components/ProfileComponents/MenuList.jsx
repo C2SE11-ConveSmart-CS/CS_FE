@@ -18,7 +18,7 @@ const menuItems = [
   {
     icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/2d13f1e866157e802f06d54d746e9d40db46d43b0130420a8ab12f6326a113ac?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
     label: 'Đăng xuất',
-    path: '/logout',
+    path: '/Landing',
   },
 ];
 

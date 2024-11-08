@@ -16,13 +16,16 @@ function ChatListItem({
   tags = [],
   social = [],
   isVerified,
+  prop
 }) {
   const { setSelectedConversation } = useContext(ChatContext)
 
   return (
     <article
       className={styles.chatItem}
-      onClick={() =>
+      onClick={() => {
+        console.log('chat list item', senderId,prop.username)
+        prop.setCurrentUserId(prop.username)
         setSelectedConversation({
           _id,
           senderId,
@@ -34,6 +37,7 @@ function ChatListItem({
           social,
           isVerified,
         })
+      }
       }
     >
       <img src={avatar} alt={`${name}'s avatar`} className={styles.avatar} />

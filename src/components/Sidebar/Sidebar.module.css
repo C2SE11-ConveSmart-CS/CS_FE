@@ -7,39 +7,28 @@
   overflow: hidden;
   font-family: Inter, sans-serif;
   color: var(--Primary-Grey-grey-700, #4a4d54);
-  transition: max-width 0.3s ease;
+  width: 60px; /* Collapsed width */
+  transition: width 0.3s ease;
 }
 
-.collapsed {
-  max-width: 80px; /* Chiều rộng khi rút gọn */
+.sidebar:hover {
+  width: 200px; /* Expanded width */
 }
 
 .logo {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
-  min-height: 64px;
+  padding: 16px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
 }
 
 .logoText {
-  font-size: 20px;
-  font-weight: 700;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .lists {
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  font-size: 14px;
-  font-weight: 400;
-  padding: 12px;
-}
-
-.mainMenu {
   display: flex;
   flex-direction: column;
 }
@@ -47,44 +36,31 @@
 .menuItem {
   display: flex;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: 8px;
-  gap: 12px;
-  transition: background-color 0.3s ease;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.menuItem:hover {
+  background-color: #f0f0f0;
 }
 
 .menuIcon {
   width: 24px;
-  aspect-ratio: 1;
-  object-fit: contain;
+  height: 24px;
+  margin-right: 12px;
 }
 
 .menuLabel {
-  flex: 1;
-  flex-basis: 0%;
-  margin: auto 0;
+  display: none; /* Hide label initially */
+  white-space: nowrap;
 }
 
-.collapsed .menuLabel {
-  display: none;
-}
-
-.toggleButton {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-  padding: 0 10px;
-  color: var(--Primary-Grey-grey-700, #4a4d54);
+.sidebar:hover .menuLabel {
+  display: block; /* Show label when sidebar is expanded */
 }
 
 .divider {
-  aspect-ratio: 200;
-  width: 200px;
-  stroke-width: 1px;
-  stroke: var(--Primary-Grey-grey-50, #f0f0f1);
-  align-self: center;
-  margin-top: 20px;
-  max-width: 100%;
+  width: 100%;
+  margin: 20px 0;
 }
-

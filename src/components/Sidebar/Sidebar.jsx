@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Sidebar.module.css';
 
 const menuItems = [
@@ -21,31 +21,17 @@ const menuItems = [
 ];
 
 const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-
   return (
-    <aside className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}>
+    <aside className={styles.sidebar}>
       <div className={styles.logo}>
         <div className={styles.logoText}>CONVESMART</div>
-        <button onClick={toggleSidebar} className={styles.toggleButton}>
-          {isCollapsed ? '>' : '<'}
-        </button>
       </div>
       <nav className={styles.lists}>
         <div className={styles.mainMenu}>
           {menuItems.map((item, index) => (
             <div key={index} className={styles.menuItem}>
-              <img
-                loading="lazy"
-                src={item.icon}
-                className={styles.menuIcon}
-                alt=""
-              />
-              {!isCollapsed && <div className={styles.menuLabel}>{item.label}</div>}
+              <img loading="lazy" src={item.icon} className={styles.menuIcon} alt={item.label} />
+              <div className={styles.menuLabel}>{item.label}</div>
             </div>
           ))}
         </div>

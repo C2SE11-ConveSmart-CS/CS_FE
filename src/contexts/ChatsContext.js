@@ -28,16 +28,47 @@ export const ChatContextProvider = ({ children }) => {
   }, [authUser])
 
   const fetchMessages = async () => {
-    console.log(selectedConversation)
-    const data = await getMessagesHistory(selectedConversation._id)
-    setMessages([...data.messages])
+    if (selectedConversation) {
+      console.log(selectedConversation)
+      const data = await getMessagesHistory(selectedConversation._id)
+      setMessages([...data.messages])
+    }
   }
 
   useEffect(() => {
-    if (selectedConversation) {
-      fetchMessages()
-    }
+    fetchMessages()
   }, [selectedConversation])
+
+  const sendMessage = async message => {
+    if (!message.text.trim()) return
+
+    try {
+      const response = await fetch(
+        `http://localhost:5001/api/chats/send_message/${message.senderId}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ text: message.text }),
+        }
+      )
+
+      if (response.ok) {
+        console.log('Tin nhắn đã được gửi thành công')
+        const newMessage = {
+          senderId: message.senderId,
+          content: message.text,
+          id: new Date().getTime(),
+        }
+        setMessages(prevMessages => [...prevMessages, newMessage])
+      } else {
+        console.error('Lỗi khi gửi tin nhắn')
+      }
+    } catch (error) {
+      console.error('Lỗi:', error)
+    }
+  }
 
   return (
     <ChatContext.Provider
@@ -47,6 +78,7 @@ export const ChatContextProvider = ({ children }) => {
         setSelectedConversation,
         messages,
         setMessages,
+        sendMessage,
       }}
     >
       {children}

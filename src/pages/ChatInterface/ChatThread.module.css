@@ -1,11 +1,13 @@
 /* CSS gốc */
 .thread {
   flex: 1;
+  max-height: 500px;
   overflow-y: auto;
   padding: 12px;
   background: #f7f9fc;
   display: flex;
   flex-direction: column;
+  border: 1px solid #ddd;
   justify-content: space-between; /* Đảm bảo nội dung nằm phía trên, tag nằm dưới */
 }
 

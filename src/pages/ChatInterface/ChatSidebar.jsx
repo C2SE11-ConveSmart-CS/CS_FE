@@ -3,8 +3,7 @@ import useConversation from '../../hooks/useConversation'
 import ChatListItem from './ChatListItem'
 import styles from './ChatSidebar.module.css'
 
-
-function ChatSidebar({prop}) {
+function ChatSidebar({ prop }) {
   const { loading, conversations } = useConversation()
   console.log(prop)
   if (loading) {
@@ -45,7 +44,7 @@ function ChatSidebar({prop}) {
         </div>
       </header>
       <nav className={styles.chatList}>
-        {conversations?.map(chat => (
+        {/* {conversations?.map(chat => (
           <ChatListItem
             key={chat._id}
             _id={chat._id}
@@ -55,6 +54,24 @@ function ChatSidebar({prop}) {
             time={chat.updatedAt}
             senderId={chat.senderId?._id}
             prop={{setCurrentUserId: prop.setCurrentUserId, username: chat.senderId?.username}}
+          />
+        ))} */}
+
+        {conversations?.map(c => (
+          <ChatListItem
+            key={c.id}
+            _id={c.id}
+            avatar={c.avatar}
+            message={c.lastMessage}
+            name={c.name}
+            time={c.time}
+            senderId={c.senderId}
+            type={c.type}
+            social={c.social}
+            prop={{
+              setCurrentUserId: prop.setCurrentUserId,
+              username: c.senderId?.username,
+            }}
           />
         ))}
       </nav>

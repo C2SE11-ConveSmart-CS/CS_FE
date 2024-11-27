@@ -32,7 +32,8 @@ function ChatThread({ time, messages, lastMessageRef }) {
     <section className={styles.thread}>
       {messages?.map((message, id) => (
         <div key={id} ref={lastMessageRef}>
-          <ChatMessage key={message.id} {...message} sender={message.senderId === authUser ? 'agent':message.senderId}/>
+          {/* <ChatMessage key={message.id} {...message} sender={message.senderId === authUser ? 'agent':message.senderId}/> */}
+          <ChatMessage key={message.id} {...message}/> 
         </div>
       ))}
 

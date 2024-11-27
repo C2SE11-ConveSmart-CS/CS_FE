@@ -9,6 +9,7 @@ import { ChatContext } from '../../contexts/ChatsContext'
 function ChatListItem({
   senderId,
   _id,
+  type,
   avatar,
   name,
   message,
@@ -36,6 +37,7 @@ function ChatListItem({
           tags,
           social,
           isVerified,
+          type
         })
       }
       }

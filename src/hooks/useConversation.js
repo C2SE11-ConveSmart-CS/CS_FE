@@ -8,27 +8,33 @@ const useConversation = () => {
   const [conversations, setConversations] = useState([])
   const { authUser } = useContext(AuthContext)
 
-  useEffect(() => {
-    if (authUser) {
-      if (conversations.length === 0) {
-        const loadConversations = async () => {
-          try {
-            setLoading(true)
-            const data = await getAllConversations()
-            setConversations(data.chats)
-            console.log(data.chats)
-          } catch (err) {
-          } finally {
-            setLoading(false)
-          }
-        }
-        loadConversations()
-      }
-      session?.on('newConversation', conversation => {
-        setConversations([...conversations, conversation])
-      })
-    }
-  }, [authUser, conversations, conversations.length])
+  useEffect(()=>{
+    setInterval(async()=>{
+      const data = await getAllConversations()
+      setConversations(data.chats)
+    }, 15000)
+  }, [])
+
+  // useEffect(() => {
+  //   if (authUser) {
+  //     if (conversations.length === 0) {
+  //       const loadConversations = async () => {
+  //         try {
+  //           setLoading(true)
+  //           const data = await getAllConversations()
+  //           setConversations(data.chats)
+  //         } catch (err) {
+  //         } finally {
+  //           setLoading(false)
+  //         }
+  //       }
+  //       loadConversations()
+  //     }
+  //     session?.on('newConversation', conversation => {
+  //       setConversations([...conversations, conversation])
+  //     })
+  //   }
+  // }, [authUser, conversations.length])
 
   return { loading, conversations }
 }

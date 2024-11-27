@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const baseURL = 'http://localhost:5001'
+export const baseURL = 'https://5325-171-225-184-109.ngrok-free.app'
 
 const customFetch = axios.create({
   baseURL: `${baseURL}/api/`,
@@ -12,6 +12,7 @@ customFetch.interceptors.request.use(config => {
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`
   }
+  config.headers['ngrok-skip-browser-warning'] = 105824
   config.headers['Content-Type'] = 'application/json'
   return config
 })

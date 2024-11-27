@@ -3,11 +3,12 @@ import EmojiPicker from 'emoji-picker-react';
 import styles from './ChatInput.module.css';
 import { ChatContext } from '../../contexts/ChatsContext';
 import { AuthContext } from '../../contexts/AuthContext';
+import { baseURL } from '../../utils/axios';
 
 function ChatInput({ prop }) {
   const [message, setMessage] = useState('');
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const { messages, setMessages } = useContext(ChatContext);
+  const { messages, setMessages, selectedConversation } = useContext(ChatContext);
   const senderId = prop.currentUserId;
   const {authUser} = useContext(AuthContext)
   // current user ni là user đang chọn má ôi, muoons lay user của mình phải lấy ở Authcontext
@@ -15,7 +16,7 @@ function ChatInput({ prop }) {
   const handleSendMessage = async () => {
     if (!message.trim()) return;
     try {
-      const response = await fetch(`http://localhost:5001/api/chats/send_message/${senderId}`, {
+      const response = await fetch(`${baseURL}/api/${selectedConversation?.type === "instagram"?"insta":"chats"}/message/${selectedConversation?.senderId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,7 +29,9 @@ function ChatInput({ prop }) {
           senderId: authUser, 
           content: message,
           id: new Date().getTime(), 
+          sender: "agent"
         };
+        
         setMessages([...messages, newMessage]);
         setMessage('');
         // thêm hiệu ứng scroll tới tin nhắn mới nhất lúc gửi xong

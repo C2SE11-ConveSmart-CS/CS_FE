@@ -16,7 +16,6 @@ function ChatMain({prop}) {
       lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, 100)
   }, [messages])
-  console.log('selectedConversation:', selectedConversation)
   useListenMessages()
 
   return (

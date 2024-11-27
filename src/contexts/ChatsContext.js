@@ -4,7 +4,8 @@ import {
   session as wsSession,
 } from '../services/socket.io/connect'
 import { createContext, useState, useContext, useEffect } from 'react'
-import { getMessagesHistory } from '../services/api/conversation'
+import { getMessagesFromInsta, getMessagesFromMessenger } from '../services/api/conversation'
+import { baseURL } from '../utils/axios'
 
 export const ChatContext = createContext()
 
@@ -29,14 +30,15 @@ export const ChatContextProvider = ({ children }) => {
 
   const fetchMessages = async () => {
     if (selectedConversation) {
-      console.log(selectedConversation)
-      const data = await getMessagesHistory(selectedConversation._id)
-      setMessages([...data.messages])
+      const { messages } = selectedConversation.type === "instagram"?await getMessagesFromInsta(selectedConversation._id):await getMessagesFromMessenger(selectedConversation._id)
+      
+      console.log("Fetch>>>",messages)
+      setMessages([...messages.reverse()])
     }
   }
 
   useEffect(() => {
-    fetchMessages()
+     fetchMessages()
   }, [selectedConversation])
 
   const sendMessage = async message => {
@@ -44,7 +46,7 @@ export const ChatContextProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:5001/api/chats/send_message/${message.senderId}`,
+        `${baseURL}/api/chats/send_message/${message.senderId}`,
         {
           method: 'POST',
           headers: {
@@ -79,6 +81,7 @@ export const ChatContextProvider = ({ children }) => {
         messages,
         setMessages,
         sendMessage,
+        fetchMessages
       }}
     >
       {children}

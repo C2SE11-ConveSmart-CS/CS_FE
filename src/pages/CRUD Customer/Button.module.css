@@ -1,0 +1,25 @@
+.button {
+    border-radius: 8px;
+    padding: 13px 33px;
+    font-size: 25px;
+    font-weight: 400;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    color: #010101;
+  }
+  
+  .cancel {
+    background-color: #f40909;
+  }
+  
+  .save {
+    background-color: #09f421;
+  }
+  
+  @media (max-width: 991px) {
+    .button {
+      padding: 13px 20px;
+      white-space: nowrap;
+    }
+  }

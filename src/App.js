@@ -14,6 +14,7 @@ import Landing from './pages/Landing/Landing'
 import NotFound from './pages/NotFound/NotFound'
 import ChangePassword from './pages/Profile Account/ChangePassword'
 import ProfileAccount from './pages/Profile Account/ProfileAccount'
+import CustomerForm from './pages/CRUD Customer/CustomerForm'
 import SignIn from './pages/SignIn/SignIn'
 import SignUp from './pages/SignUp/SignUp'
 
@@ -29,12 +30,17 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AuthenUser />}>
-          <Route index element={<ChatInterface />} />
-          <Route path="Dashboard" element={<DashboardLayout />} />
-          <Route path="Profile" element={<ProfileAccount />} />
-          <Route path="ChangePassword" element={<ChangePassword />} />
+          {/* <Route index element={<ChatInterface />} /> */}
+          {/* <Route path="Dashboard" element={<DashboardLayout />} /> */}
+          {/* <Route path="Profile" element={<ProfileAccount />} /> */}
+          {/* <Route path="ChangePassword" element={<ChangePassword />} /> */}
         </Route>
+        <Route path="ChangePassword" element={<ChangePassword />} />
+        <Route path="Profile" element={<ProfileAccount />} />
+        <Route path="Dashboard" element={<DashboardLayout />} />
+        <Route path="/chat"  element={<ChatInterface />} />
         <Route path="/Landing" index element={<Landing />} />
+        <Route path="/CRUD" index element={<CustomerForm />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Forgotpassword" element={<ForgotPassword />} />

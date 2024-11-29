@@ -17,7 +17,7 @@ export function MetricsOverview() {
           <div className={styles.metricContent}>
             <div className={styles.metricMain}>
               <img
-                src="/assets/icons/sms.svg"
+                src="/icons/sms.png"
                 alt="SMS"
                 className={styles.metricIcon}
               />
@@ -37,7 +37,7 @@ export function MetricsOverview() {
           <div className={styles.metricContent}>
             <div className={styles.metricMain}>
               <img
-                src="/assets/icons/email.svg"
+                src="/icons/email.png"
                 alt="Email"
                 className={styles.metricIcon}
               />
@@ -54,7 +54,7 @@ export function MetricsOverview() {
           <div className={styles.metricContent}>
             <div className={styles.metricMain}>
               <img
-                src="/assets/icons/task.svg"
+                src="/icons/task.png"
                 alt="Tasks"
                 className={styles.metricIcon}
               />

@@ -1,0 +1,53 @@
+.customerForm {
+    background-color: #f4f5f9;
+    padding: 24px 13px 70px 24px;
+    font-family: Inter, sans-serif;
+  }
+  
+  .formHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .formTitle {
+    color: #2c2e32;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .actionButtons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .formContent {
+    max-width: 1243px;
+  }
+  
+  .formSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px 64px;
+    margin-bottom: 25px;
+  }
+  
+  .addressSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px 42px;
+    max-width: 586px;
+  }
+  
+  @media (max-width: 991px) {
+    .customerForm {
+      padding-left: 20px;
+    }
+  
+    .formContent,
+    .formSection,
+    .addressSection {
+      max-width: 100%;
+    }
+  }

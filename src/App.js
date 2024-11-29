@@ -17,6 +17,7 @@ import ProfileAccount from './pages/Profile Account/ProfileAccount'
 import SignIn from './pages/SignIn/SignIn'
 import SignUp from './pages/SignUp/SignUp'
 
+// Bảo vệ route với xác thực
 const AuthenUser = () => {
   const { authUser } = useContext(AuthContext)
   if (!authUser) return <Navigate to="/signIn" />
@@ -28,13 +29,17 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Route chính yêu cầu xác thực */}
         <Route path="/" element={<AuthenUser />}>
-          <Route index element={<ChatInterface />} />
+          <Route index element={<ChatInterface />} /> {/* Trang mặc định */}
           <Route path="Dashboard" element={<DashboardLayout />} />
           <Route path="Profile" element={<ProfileAccount />} />
           <Route path="ChangePassword" element={<ChangePassword />} />
+          <Route path="Conversations" element={<ChatInterface />} />{' '}
         </Route>
-        <Route path="/Landing" index element={<Landing />} />
+
+        {/* Các route không yêu cầu xác thực */}
+        <Route path="/Landing" element={<Landing />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Forgotpassword" element={<ForgotPassword />} />

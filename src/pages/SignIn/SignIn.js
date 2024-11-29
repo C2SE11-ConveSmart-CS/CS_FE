@@ -42,11 +42,13 @@ const SignIn = () => {
   return (
     <SignInWrapper>
       <div className="full-page">
-        <div className="logo">Your Logo</div>
+        <div className="logo">
+          <img src="CONVESMART.png" className="logo-image" width="100" />
+        </div>
         <div className="container">
           <div className="left">
-            <h1>Đăng nhập vào</h1>
-            <h2>ConveSmart</h2>
+            <h1>ConveSmart xin chào !</h1>
+            <h2> </h2>
             <p>Nếu bạn chưa có tài khoản, hãy đăng ký</p>
             <p>
               Bạn có thể <Link to="/signup">Đăng ký ở đây!</Link>

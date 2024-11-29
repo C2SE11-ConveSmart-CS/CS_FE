@@ -103,15 +103,20 @@ export const SignInWrapper = styled.div`
   }
   .social-icons {
     display: flex;
+    justify-content: center; 
+    align-items: center;    
     gap: 20px;
-  }
-  .social-icons i {
+    height: 100px; 
+}
+.social-icons i {
     font-size: 24px;
     color: #555;
     cursor: pointer;
-  }
-  .social-icons a:hover {
+}
+.social-icons a:hover {
     color: #6c63ff;
+}
+
   }
   .illustration {
     width: 100%;

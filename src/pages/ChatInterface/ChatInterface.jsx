@@ -9,11 +9,10 @@ import { ChatContext } from '../../contexts/ChatsContext'
 function ChatInterface() {
   const { selectedConversation } = useContext(ChatContext)
   const [currentUserId, setCurrentUserId] = useState("")
-
+  
   return (
     <Layout>
       <div className={styles.container}>
-        {/* Bố trí phần chính của giao diện chat */}
         <div className={styles.chatContent}>
           <ChatSidebar className={styles.chatSidebar} prop={{setCurrentUserId}}/>
           {selectedConversation ? (
@@ -21,7 +20,7 @@ function ChatInterface() {
           ) : (
             <div className={styles.chatMain}>Select conversation</div>
           )}
-          {/* <ChatInfo className={styles.chatInfo} /> */}
+          <ChatInfo className={styles.chatInfo} />
         </div>
       </div>
     </Layout>

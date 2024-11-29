@@ -1,14 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useConversation from '../../hooks/useConversation'
 import ChatListItem from './ChatListItem'
 import styles from './ChatSidebar.module.css'
 
 function ChatSidebar({ prop }) {
   const { loading, conversations } = useConversation()
-  console.log(prop)
+  const [searchTerm, setSearchTerm] = useState('') // State để lưu giá trị tìm kiếm
+
   if (loading) {
     return <div>Loading...</div>
   }
+
+  // Sắp xếp các hội thoại theo thời gian
+  const sortedConversations = [...(conversations || [])].sort(
+    (a, b) => new Date(b.time) - new Date(a.time)
+  )
+
+  // Lọc các hội thoại dựa trên từ khóa tìm kiếm
+  const filteredConversations = sortedConversations.filter((c) => 
+    !searchTerm || (c.name && c.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+  
+  
 
   return (
     <aside className={styles.sidebar}>
@@ -28,10 +41,13 @@ function ChatSidebar({ prop }) {
               alt=""
               className={styles.searchIcon}
             />
+            {/* Input để nhập từ khóa tìm kiếm */}
             <input
               type="text"
               placeholder="Tìm kiếm"
               className={styles.searchField}
+              value={searchTerm} // Giá trị nhập
+              onChange={(e) => setSearchTerm(e.target.value)} // Cập nhật từ khóa tìm kiếm
             />
           </div>
           <button className={styles.filterButton}>
@@ -44,20 +60,7 @@ function ChatSidebar({ prop }) {
         </div>
       </header>
       <nav className={styles.chatList}>
-        {/* {conversations?.map(chat => (
-          <ChatListItem
-            key={chat._id}
-            _id={chat._id}
-            avatar={chat.senderId?.avatar}
-            message={chat.messages[0]?.content}
-            name={chat.senderId?.normalize}
-            time={chat.updatedAt}
-            senderId={chat.senderId?._id}
-            prop={{setCurrentUserId: prop.setCurrentUserId, username: chat.senderId?.username}}
-          />
-        ))} */}
-
-        {conversations?.map(c => (
+        {filteredConversations.map((c) => (
           <ChatListItem
             key={c.id}
             _id={c.id}

@@ -12,9 +12,11 @@ import { CustomerOverview } from './CustomerOverview'
 import { OrderStatus } from './OrderStatus'
 import { CallCenter } from './CallCenter'
 import { TopPerformers } from './TopPerformers'
+import Layout from '../../../components/Layout/Layout'
 
 export function DashboardLayout() {
   return (
+    <Layout>
     <main className={styles.dashboard}>
       <div className={styles.container}>
         <Header />
@@ -34,5 +36,6 @@ export function DashboardLayout() {
         </section>
       </div>
     </main>
+    </Layout>
   )
 }

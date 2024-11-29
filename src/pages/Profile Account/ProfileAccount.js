@@ -3,32 +3,30 @@ import { ProfileAccountWrapper } from './ProfileAccountWrapper'
 import { Link, useNavigate } from 'react-router-dom'
 
 const ProfileAccount = () => {
-  // Khởi tạo state cho các giá trị form
   const [firstName, setFirstName] = useState('Thu Hà')
   const [lastName, setLastName] = useState('Trần')
   const [phone, setPhone] = useState('0983 264 224')
   const [email, setEmail] = useState('thuha89@gmail.com')
 
-  // State để lưu dữ liệu đã lưu thành công
   const [savedFirstName, setSavedFirstName] = useState(firstName)
   const [savedLastName, setSavedLastName] = useState(lastName)
   const [savedEmail, setSavedEmail] = useState(email)
 
-  // Sử dụng useNavigate để điều hướng
   const navigate = useNavigate()
 
-  // Hàm lưu dữ liệu
   const handleSave = () => {
     setSavedFirstName(firstName)
     setSavedLastName(lastName)
     setSavedEmail(email)
-
     alert('Thay đổi đã được lưu!')
   }
 
-  // Hàm điều hướng khi bấm nút "Exit"
   const handleExit = () => {
-    navigate('/chat') // Điều hướng về trang /chat
+    navigate('/Conversations') // Điều hướng về trang /chat
+  }
+
+  const handleCancel = () => {
+    navigate(-1) // Quay lại trang trước đó
   }
 
   return (
@@ -63,7 +61,6 @@ const ProfileAccount = () => {
               src="https://storage.googleapis.com/a1aa/image/XLq063JiFMrpHVaXMgU7ZvkSdYeg7cLtFztfHPDZoGqND9kTA.jpg"
               width="100"
             />
-            {/* Hiển thị giá trị đã lưu */}
             <h3>
               {savedFirstName} {savedLastName}
             </h3>
@@ -85,7 +82,7 @@ const ProfileAccount = () => {
               id="first-name"
               type="text"
               value={firstName}
-              onChange={e => setFirstName(e.target.value)} // Cập nhật giá trị state
+              onChange={e => setFirstName(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -94,7 +91,7 @@ const ProfileAccount = () => {
               id="last-name"
               type="text"
               value={lastName}
-              onChange={e => setLastName(e.target.value)} // Cập nhật giá trị state
+              onChange={e => setLastName(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -103,7 +100,7 @@ const ProfileAccount = () => {
               id="phone"
               type="text"
               value={phone}
-              onChange={e => setPhone(e.target.value)} // Cập nhật giá trị state
+              onChange={e => setPhone(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -112,15 +109,16 @@ const ProfileAccount = () => {
               id="email"
               type="text"
               value={email}
-              onChange={e => setEmail(e.target.value)} // Cập nhật giá trị state
+              onChange={e => setEmail(e.target.value)}
             />
           </div>
           <div className="form-actions">
-            <button className="cancel-btn">Hủy</button>
+            <button className="cancel-btn" onClick={handleCancel}>
+              Hủy
+            </button>
             <button className="save-btn" onClick={handleSave}>
               Lưu thay đổi
-            </button>{' '}
-            {/* Gọi hàm handleSave */}
+            </button>
           </div>
         </div>
       </div>

@@ -4,7 +4,10 @@ import {
   session as wsSession,
 } from '../services/socket.io/connect'
 import { createContext, useState, useContext, useEffect } from 'react'
-import { getMessagesFromInsta, getMessagesFromMessenger } from '../services/api/conversation'
+import {
+  getMessagesFromInsta,
+  getMessagesFromMessenger,
+} from '../services/api/conversation'
 import { baseURL } from '../utils/axios'
 
 export const ChatContext = createContext()
@@ -13,6 +16,7 @@ export const ChatContextProvider = ({ children }) => {
   const [session, setSession] = useState(null)
   const [selectedConversation, setSelectedConversation] = useState(null)
   const [messages, setMessages] = useState([])
+  const [selectedCustomer, setSelectedCustomer] = useState(null)
   const { authUser } = useContext(AuthContext)
 
   useEffect(() => {
@@ -30,15 +34,18 @@ export const ChatContextProvider = ({ children }) => {
 
   const fetchMessages = async () => {
     if (selectedConversation) {
-      const { messages } = selectedConversation.type === "instagram"?await getMessagesFromInsta(selectedConversation._id):await getMessagesFromMessenger(selectedConversation._id)
-      
-      console.log("Fetch>>>",messages)
+      const { messages } =
+        selectedConversation.type === 'instagram'
+          ? await getMessagesFromInsta(selectedConversation._id)
+          : await getMessagesFromMessenger(selectedConversation._id)
+
+      console.log('Fetch>>>', messages)
       setMessages([...messages.reverse()])
     }
   }
 
   useEffect(() => {
-     fetchMessages()
+    fetchMessages()
   }, [selectedConversation])
 
   const sendMessage = async message => {
@@ -80,8 +87,10 @@ export const ChatContextProvider = ({ children }) => {
         setSelectedConversation,
         messages,
         setMessages,
+        selectedCustomer,
+        setSelectedCustomer,
         sendMessage,
-        fetchMessages
+        fetchMessages,
       }}
     >
       {children}

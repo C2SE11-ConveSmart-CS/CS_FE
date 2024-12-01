@@ -16,6 +16,10 @@ import ChangePassword from './pages/Profile Account/ChangePassword'
 import ProfileAccount from './pages/Profile Account/ProfileAccount'
 import SignIn from './pages/SignIn/SignIn'
 import SignUp from './pages/SignUp/SignUp'
+import HomePage from './pages/Bot/HomePage'
+import ChatBot from './components/Bot/ChatBot'
+import IssuePage from './pages/Bot/IssuePage'
+import FAQPage from './pages/Bot/FAQPage'
 
 // Bảo vệ route với xác thực
 const AuthenUser = () => {
@@ -40,6 +44,10 @@ const App = () => {
         {/* Các route không yêu cầu xác thực */}
         <Route path="/Landing" element={<Landing />} />{' '}
         {/* Trang mặc định khi chưa đăng nhập */}
+        <Route path="/bot" element={<HomePage />} />
+        <Route path="/bot/chat" element={<ChatBot />} />
+        <Route path="/issue" element={<IssuePage />} />
+        <Route path="/faq" element={<FAQPage />} />
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Forgotpassword" element={<ForgotPassword />} />

@@ -27,7 +27,7 @@ const SignIn = () => {
       })
       if (data) {
         reloadUser()
-        navigate('/') // Chuyển hướng đến ChatInterface
+        navigate('/Conversations') // Chuyển hướng đến ChatInterface
       }
     } catch (error) {
       // Đăng nhập không thành công

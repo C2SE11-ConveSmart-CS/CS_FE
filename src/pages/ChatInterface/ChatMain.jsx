@@ -15,7 +15,7 @@ function ChatMain({prop}) {
     setTimeout(() => {
       lastMessageRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, 100)
-  }, [messages])
+  }, [messages, messages.length])
   useListenMessages()
 
   return (

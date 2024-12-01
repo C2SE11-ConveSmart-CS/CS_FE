@@ -3,7 +3,7 @@ import {
   createNewIO,
   session as wsSession,
 } from '../services/socket.io/connect'
-import { createContext, useState, useContext, useEffect } from 'react'
+import { createContext, useState, useContext, useEffect, useRef } from 'react'
 import {
   getMessagesFromInsta,
   getMessagesFromMessenger,
@@ -18,6 +18,7 @@ export const ChatContextProvider = ({ children }) => {
   const [messages, setMessages] = useState([])
   const [selectedCustomer, setSelectedCustomer] = useState(null)
   const { authUser } = useContext(AuthContext)
+  const ref = useRef(null)
 
   useEffect(() => {
     if (authUser) {
@@ -44,9 +45,17 @@ export const ChatContextProvider = ({ children }) => {
     }
   }
 
+  ref.current = fetchMessages
+
+  // useEffect(() => {
+  //   fetchMessages()
+  // }, [selectedConversation])
+
   useEffect(() => {
-    fetchMessages()
-  }, [selectedConversation])
+    setInterval(() => {
+      ref.current()
+    }, 5000)
+  }, [])
 
   const sendMessage = async message => {
     if (!message.text.trim()) return

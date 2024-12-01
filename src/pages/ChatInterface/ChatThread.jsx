@@ -26,7 +26,7 @@ function ChatThread({ time, messages, lastMessageRef }) {
 
   useEffect(() => {
     lastMessageRef?.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, lastMessageRef])
+  }, [messages, lastMessageRef, messages.length])
 
   return (
     <section className={styles.thread}>

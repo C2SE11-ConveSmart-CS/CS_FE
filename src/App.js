@@ -20,26 +20,26 @@ import SignUp from './pages/SignUp/SignUp'
 // Bảo vệ route với xác thực
 const AuthenUser = () => {
   const { authUser } = useContext(AuthContext)
-  if (!authUser) return <Navigate to="/signIn" />
+  if (!authUser) return <Navigate to="/Landing" />
   return <Outlet />
 }
 
 const App = () => {
-  console.log('render')
   return (
     <BrowserRouter>
       <Routes>
         {/* Route chính yêu cầu xác thực */}
         <Route path="/" element={<AuthenUser />}>
-          <Route index element={<ChatInterface />} /> {/* Trang mặc định */}
+          <Route index element={<Navigate to="/Conversations" />} />{' '}
+          {/* Mặc định sau đăng nhập */}
           <Route path="Dashboard" element={<DashboardLayout />} />
           <Route path="Profile" element={<ProfileAccount />} />
           <Route path="ChangePassword" element={<ChangePassword />} />
-          <Route path="Conversations" element={<ChatInterface />} />{' '}
+          <Route path="Conversations" element={<ChatInterface />} />
         </Route>
-
         {/* Các route không yêu cầu xác thực */}
-        <Route path="/Landing" element={<Landing />} />
+        <Route path="/Landing" element={<Landing />} />{' '}
+        {/* Trang mặc định khi chưa đăng nhập */}
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Forgotpassword" element={<ForgotPassword />} />

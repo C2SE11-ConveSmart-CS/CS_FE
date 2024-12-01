@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './ChatInterface.module.css'
 import ChatSidebar from './ChatSidebar'
 import ChatMain from './ChatMain'

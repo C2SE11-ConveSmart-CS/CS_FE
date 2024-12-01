@@ -1,0 +1,199 @@
+.footer {
+  justify-content: space-between;
+  align-items: start;
+  background: var(--Heading, #161b20);
+  display: flex;
+  gap: 40px 45px;
+  overflow: hidden;
+  flex-wrap: wrap;
+  padding: 96px 98px;
+}
+
+.brandSection {
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  width: 271px;
+}
+
+.brandContent {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  color: var(--White, #fff);
+}
+
+.brandName {
+  font: 600 38px/1 Manrope, sans-serif;
+}
+
+.brandDescription {
+  font: 500 16px/23px Quicksand, -apple-system, Roboto, Helvetica, sans-serif;
+  margin-top: 16px;
+  font-feature-settings: 'liga' off, 'clig' off;
+}
+
+.socialIcons {
+  display: flex;
+  margin-top: 32px;
+  width: 100%;
+  gap: 32px;
+}
+
+.socialIcon {
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--White, #fff);
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+}
+
+.socialIcon:first-child {
+  background: var(--White, #fff);
+}
+
+.socialIconImage {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 24px;
+}
+
+.quickLinksSection {
+  display: flex;
+  flex-direction: column;
+  color: var(--White, #fff);
+  width: 113px;
+}
+
+.sectionTitle {
+  font: 600 21px/1 Manrope, sans-serif;
+}
+
+.quickLinksList {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  flex-direction: column;
+  font: 500 16px/1 Quicksand, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.quickLinkItem {
+  font-feature-settings: 'liga' off, 'clig' off;
+  color: var(--White, #fff);
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+.quickLinkItem:first-child {
+  margin-top: 0;
+}
+
+.contactSection {
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  color: var(--White, #fff);
+  width: 293px;
+}
+
+.contactList {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  flex-direction: column;
+  font: 500 16px/1 Quicksand, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.contactItem:first-child {
+  margin-top: 0;
+}
+
+.contactIcon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 16px;
+}
+
+.contactText {
+  font-feature-settings: 'liga' off, 'clig' off;
+  flex: 1;
+}
+
+.newsletterSection {
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  width: 432px;
+}
+
+.subscribeForm {
+  display: flex;
+  margin-top: 40px;
+  width: 100%;
+  max-width: 432px;
+}
+
+.emailInput {
+  border-radius: 16px 0 0 16px;
+  background: var(--White, #fff);
+  min-width: 240px;
+  color: var(--Paragraph, #666);
+  flex: 1;
+  padding: 24px;
+  font: 500 16px/1 Quicksand, -apple-system, Roboto, Helvetica, sans-serif;
+  border: none;
+}
+
+.subscribeButton {
+  border-radius: 0 16px 16px 0;
+  background: var(--Accent-1, #00b6ff);
+  color: var(--White, #fff);
+  text-align: center;
+  width: 152px;
+  padding: 24px 16px;
+  font: 600 21px/1 Manrope, sans-serif;
+  border: none;
+  cursor: pointer;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 991px) {
+  .footer {
+    padding: 0 20px;
+  }
+
+  .newsletterSection {
+    max-width: 100%;
+  }
+
+  .subscribeForm {
+    max-width: 100%;
+  }
+
+  .emailInput {
+    padding: 0 20px;
+  }
+
+  .subscribeButton {
+    white-space: normal;
+  }
+}

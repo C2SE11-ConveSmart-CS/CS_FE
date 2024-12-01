@@ -1,26 +1,280 @@
-.landing-container {
-  position: relative;
-  width: 100%;
-  height: 100vh;
+body {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
 }
 
-.auth-buttons {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+.App {
+  text-align: center;
+  background-color: #d9faff;
 }
 
-.auth-button {
-  margin-left: 10px;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 90px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo img {
+  margin-right: 10px;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 30px;
+}
+
+.navbar-item {
+  font-weight: 600;
+  font-size: 16px;
+  color: #000000;
+  line-height: 24px;
   cursor: pointer;
-  font-size: 14px;
+  position: relative;
 }
 
-.auth-button:hover {
-  background-color: #0056b3;
+.navbar-item:hover {
+  color: #007bff;
+}
+
+.navbar-item::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #007bff;
+  transition: width 0.3s;
+  margin: 0 auto;
+}
+
+.navbar-item:hover::after {
+  width: 100%;
+}
+
+.hero-section {
+  background-color: #d9faff;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 72px;
+  font-weight: 800;
+  color: rgba(0, 182, 255, 1);;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.highlight {
+  color: #000000;
+}
+
+.cta-button {
+  margin-top: 30px;
+  padding: 12px 25px;
+  font-size: 16px;
+  color: white;
+  background-color: #2979ff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #1565c0;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+}
+
+.overview-card,
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.overview-card:hover,
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2c2e32;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  color: #686d76;
+  margin-bottom: 20px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.stat-item img {
+  margin-right: 10px;
+}
+
+.stat-text p {
+  font-size: 12px;
+  color: #686d76;
+  margin: 0;
+}
+
+.stat-text h3 {
+  font-size: 18px;
+  color: #2c2e32;
+  margin: 0;
+}
+
+.emotionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+}
+
+.emotionText {
+  flex: 1;
+  text-align: left;
+  margin-left: 10px;
+  font-size: 14px;
+  color: #686d76;
+}
+
+.emotionCount {
+  font-weight: 700;
+  font-size: 18px;
+  color: #2c2e32;
+}
+
+.chat-seen-component {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  max-width: 300px;
+  margin: 20px auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  position: relative;
+  margin-right: 10px;
+}
+
+.staff-icon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.chat-info {
+  flex-grow: 1;
+}
+
+.name,
+.message,
+.status {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.name img,
+.message img {
+  margin-right: 5px;
+}
+
+.name span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #000a2d;
+}
+
+.message span {
+  font-size: 12px;
+  color: #4a4d54;
+}
+
+.status .tag {
+  background-color: #365bff;
+  color: white;
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+  margin-right: 5px;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.social-icons img {
+  width: 14px;
+  height: 14px;
+}
+
+.time {
+  font-size: 12px;
+  color: #686d76;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .hero-title {
+    font-size: 48px;
+  }
+
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .overview-card,
+  .card {
+    max-width: 100%;
+  }
 }

@@ -1,0 +1,150 @@
+.servicesSection {
+  background: var(--background, linear-gradient(180deg, #fff 0%, #fff 100%));
+  width: 100%;
+  padding: 160px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.sectionTitle {
+  color: var(--Heading, #161b20);
+  text-align: center;
+  text-transform: capitalize;
+  font: 600 67px/1 Manrope, sans-serif;
+  max-width: 765px;
+  margin: 0 auto;
+}
+
+.servicesGrid {
+  width: 100%;
+  max-width: 1229px;
+  margin-top: 92px;
+  padding: 0 16px 181px;
+}
+
+.servicesRow {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 57px;
+  align-items: stretch; /* Bảo đảm các cột dịch vụ cùng chiều cao */
+}
+
+.serviceCard,
+.serviceCardAccent {
+  border-radius: 24px;
+  min-height: 287px;
+  height: 100%;
+  padding: 33px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 10px 12px 25px 0px rgba(0, 0, 0, 0.09);
+  background: var(--White, #00b6ff);
+  transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động mượt mà */
+}
+
+.serviceCardAccent {
+  background: var(--Accent-1, #00b6ff);
+}
+
+.serviceCard:hover,
+.serviceCardAccent:hover {
+  transform: translateY(-10px); /* Đẩy nhẹ card lên khi hover */
+  box-shadow: 10px 12px 30px 0px rgba(0, 0, 0, 0.2); /* Tăng độ đổ bóng khi hover */
+  background: var(--Hover-Background, #014a62); /* Thay đổi màu nền khi hover */
+}
+
+/* Thêm hiệu ứng hover cho text */
+.serviceCard:hover .serviceTitle,
+.serviceCardAccent:hover .serviceTitle {
+  color: var(--Accent-2, #ffffff); /* Thay đổi màu tiêu đề khi hover */
+}
+
+.serviceCard:hover .serviceDescription,
+.serviceCardAccent:hover .serviceDescription {
+  color: var(--Paragraph, #f0f0f0); /* Thay đổi màu mô tả khi hover */
+}
+
+.serviceCard:hover .serviceImage,
+.serviceCardAccent:hover .serviceImage {
+  transform: scale(1.05); /* Phóng to hình ảnh khi hover */
+  transition: transform 0.3s ease; /* Thêm hiệu ứng phóng to mượt mà */
+}
+
+
+
+.serviceContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.serviceTitle,
+.serviceTitleLight {
+  font: 600 28px/1 Manrope, sans-serif;
+  margin-bottom: 16px;
+}
+
+.serviceTitle {
+  color: var(--Heading, #fff);
+}
+
+.serviceTitleLight {
+  color: var(--White, #fff);
+}
+
+.serviceDescription,
+.serviceDescriptionLight {
+  font: 500 16px/23px Quicksand, -apple-system, Roboto, Helvetica, sans-serif;
+  font-feature-settings: 'liga' off, 'clig' off;
+}
+
+.serviceDescription {
+  color: var(--Paragraph, #fff);
+}
+
+.serviceDescriptionLight {
+  color: var(--White, #fff);
+}
+
+.serviceImage {
+  width: 100%; /* Chiếm toàn bộ chiều rộng của cột */
+  max-width: 180px; /* Giới hạn chiều rộng tối đa */
+  height: auto; /* Giữ tỷ lệ gốc của hình ảnh */
+  margin: 0 auto; /* Căn giữa hình ảnh trong thẻ */
+  object-fit: contain; /* Bảo đảm hình ảnh nằm gọn trong khung */
+  display: block;
+}
+
+
+@media (max-width: 991px) {
+  .servicesSection {
+    padding-top: 100px;
+  }
+
+  .sectionTitle {
+    font-size: 40px;
+  }
+
+  .servicesGrid {
+    margin-top: 40px;
+    padding: 0 20px 100px;
+  }
+
+  .servicesRow {
+    flex-direction: column; /* Sắp xếp theo cột trên màn hình nhỏ */
+    margin-bottom: 0;
+  }
+
+  .serviceColumn {
+    margin-bottom: 40px;
+  }
+
+  .serviceCard,
+  .serviceCardAccent {
+    padding: 20px;
+    height: auto; /* Cho phép card mở rộng theo nội dung trên màn hình nhỏ */
+  }
+}

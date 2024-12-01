@@ -30,7 +30,7 @@ const App = () => {
       <Routes>
         {/* Route chính yêu cầu xác thực */}
         <Route path="/" element={<AuthenUser />}>
-          <Route index element={<Navigate to="/Conversations" />} />{' '}
+          <Route index element={<Navigate to="/Dashboard" />} />{' '}
           {/* Mặc định sau đăng nhập */}
           <Route path="Dashboard" element={<DashboardLayout />} />
           <Route path="Profile" element={<ProfileAccount />} />

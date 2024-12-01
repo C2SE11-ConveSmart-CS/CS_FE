@@ -1,0 +1,50 @@
+.analyticsContainer {
+  width: 100%;
+  padding: 20px;
+}
+
+.analyticsGrid {
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 991px) {
+  .analyticsGrid {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+.messageSection,
+.sentimentSection {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.sectionTitle {
+  color: var(--Primary-Grey-grey-900, #2c2e32);
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.sectionDescription {
+  color: var(--Primary-Grey-grey-500, #686d76);
+  font-size: 14px;
+  margin: 8px 0 0;
+}
+
+.messageList,
+.sentimentList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}

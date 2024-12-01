@@ -1,0 +1,76 @@
+.dashboardContainer {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Ensures elements are spaced out evenly */
+}
+
+.sectionWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+}
+.abczxc {
+  display: flex;
+}
+
+.pageOverview,
+.customerOverview {
+  border-radius: 12px;
+  background-color: #fff;
+  padding: 24px;
+  flex: auto;
+  min-width: 240px;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Ensures padding is included in width calculation */
+}
+
+.customerOverview {
+  min-height: 320px;
+  width: 100%; /* Makes it responsive, no fixed width */
+}
+
+.sectionContent {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  color: var(--Primary-Grey-grey-900, #2c2e32);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.sectionDescription {
+  color: var(--Primary-Grey-grey-500, #686d76);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.metricsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--Primary-Grey-grey-100, #d0d2d5);
+  background-color: #fff;
+  padding: 12px;
+}
+
+@media (max-width: 991px) {
+  .pageOverview,
+  .customerOverview {
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 20px; /* Ensure they take full width on smaller screens */
+  }
+
+  .sectionWrapper {
+    flex-direction: column; 
+    gap: 20px;
+    /* Stack the cards vertically on small screens */
+  }
+}

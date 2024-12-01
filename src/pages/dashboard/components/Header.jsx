@@ -8,7 +8,7 @@ export function Header() {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>Bán hàng đa kênh</h1>
-      <div className={styles.filters}>
+      {/* <div className={styles.filters}>
         <div className={styles.filterItem}>
           <img
             src="/assets/icons/employee.svg"
@@ -35,7 +35,7 @@ export function Header() {
             className={styles.dropdownIcon}
           />
         </div>
-      </div>
+      </div> */}
     </header>
   )
 }

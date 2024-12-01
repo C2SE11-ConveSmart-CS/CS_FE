@@ -1,0 +1,28 @@
+.sentimentCardContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.sentimentIcon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.sentimentContent {
+  flex: 1;
+}
+
+.sentimentTitle {
+  color: var(--Primary-Grey-grey-500, #686d76);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.sentimentCount {
+  color: var(--Primary-Grey-grey-900, #2c2e32);
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 12px;
+}

@@ -1,0 +1,33 @@
+.metricContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 240px;
+  padding: 12px 20px;
+  text-align: center;
+}
+
+.metricTitle {
+  color: var(--Primary-Grey-grey-900, #2c2e32);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.metricValue {
+  background-color: #fffdfd;
+  border-radius: 50%;
+  width: 111px;
+  height: 111px;
+  margin: 34px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  border: 1px solid #c8baba;
+}
+
+@media (max-width: 991px) {
+  .metricValue {
+    padding: 0 20px;
+  }
+}

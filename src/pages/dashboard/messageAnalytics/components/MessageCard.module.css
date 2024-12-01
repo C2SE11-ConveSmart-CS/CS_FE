@@ -1,0 +1,35 @@
+.messageCardContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding: 0 30px 0 0;
+}
+
+@media (max-width: 991px) {
+  .messageCardContainer {
+    padding-right: 10px;
+  }
+}
+
+.messageIcon {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.messageContent {
+  flex: 1;
+}
+
+.messageTitle {
+  color: var(--Primary-Grey-grey-500, #686d76);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.messageCount {
+  color: var(--Primary-Grey-grey-900, #2c2e32);
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 12px;
+}

@@ -9,6 +9,7 @@
   font-family: Inter, sans-serif;
   justify-content: space-between;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .title {

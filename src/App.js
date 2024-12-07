@@ -8,6 +8,7 @@ import ProfileAccount from './pages/Profile Account/ProfileAccount'
 import ChangePassword from './pages/Profile Account/ChangePassword'
 import CustomerList from './pages/CustomerList/CustomerList'
 import Test from './pages/CustomerList/Sidebar'
+import OrderPage from './pages/Order/order'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/changepassword" element={<ChangePassword />} />
         <Route path="/customer-list" element={<CustomerList />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/order" element={<OrderPage />} />
       </Routes>
     </BrowserRouter>
   )

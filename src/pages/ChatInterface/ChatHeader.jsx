@@ -1,8 +1,17 @@
 
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import styles from './ChatHeader.module.css'
+import { ChatContext } from '../../contexts/ChatsContext';
 
-function ChatHeader({ avatar, name }) {
+function ChatHeader(props) {
+  const { avatar, name  } = props
+   const { selectedConversation, messages,isSwitchOn ,setIsSwitchOn} = useContext(ChatContext)
+  
+
+  const handleSwitchToggle = () => {
+    setIsSwitchOn((prev) => !prev);
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.userInfo}>
@@ -76,6 +85,14 @@ function ChatHeader({ avatar, name }) {
             alt="Action 9"
           />
         </button>
+        <div className={styles.switchContainer}>
+          <button
+            className={`${styles.switchButton} ${
+              isSwitchOn ? styles.on : styles.off
+            }`}
+            onClick={handleSwitchToggle}
+          ></button>
+        </div>
       </div>
     </header>
   )

@@ -29,3 +29,11 @@ export const getMessagesFromInsta = async conversationId => {
   }
 }
 
+export const getMessagesFromBOT = async conversationId => {
+  try {
+    const resp = await customFetch.get(`/chats/messages/bot/${conversationId}`)
+    return resp?.data
+  } catch (err) {
+    throw err.response.data.msg
+  }
+}

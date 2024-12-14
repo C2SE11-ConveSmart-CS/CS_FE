@@ -18,6 +18,7 @@ import ProfileAccount from './pages/Profile Account/ProfileAccount'
 import SignIn from './pages/SignIn/SignIn'
 import SignUp from './pages/SignUp/SignUp'
 import Dashboard from './pages/dashboard/orderDashboard/components/Dashboard'
+import ChatHeader from './pages/ChatInterface/ChatHeader';
 
 // Bảo vệ route với xác thực
 const AuthenUser = () => {
@@ -37,12 +38,14 @@ const App = () => {
           <Route path="Dashboard" element={<DashboardLayout />} />
           <Route path="Profile" element={<ProfileAccount />} />
           <Route path="ChangePassword" element={<ChangePassword />} />
-          <Route path="Conversations" element={<ChatInterface />} />
+          
           
         </Route>
         {/* Các route không yêu cầu xác thực */}
         <Route path="/Landing" element={<Landing />} />{' '}
         <Route path="OrderDashboard" element={<Dashboard />} />
+        <Route path="Conversations" element={<ChatInterface />} />
+        <Route path="chay" element={<ChatHeader />} />
         {/* Trang mặc định khi chưa đăng nhập */}
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />

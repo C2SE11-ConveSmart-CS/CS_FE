@@ -82,3 +82,54 @@
   width: 16px;
   height: 16px;
 }
+
+.switchContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.switchButton {
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #ccc; /* Màu mặc định khi off */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.switchButton.on {
+  background-color: #4caf50; /* Màu xanh khi bật */
+}
+
+.switchButton.off {
+  background-color: #bdbdbd; /* Màu xám nhẹ khi tắt */
+}
+
+.switchButton::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+.switchButton.on::after {
+  transform: translateX(20px); /* Di chuyển nút gạt */
+}
+
+.switchButton.off::after {
+  transform: translateX(0);
+}
+

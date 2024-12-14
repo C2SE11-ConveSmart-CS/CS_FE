@@ -7,6 +7,7 @@ import { createContext, useState, useContext, useEffect, useRef } from 'react'
 import {
   getMessagesFromInsta,
   getMessagesFromMessenger,
+  getMessagesFromBOT
 } from '../services/api/conversation'
 import { baseURL } from '../utils/axios'
 
@@ -18,6 +19,9 @@ export const ChatContextProvider = ({ children }) => {
   const [messages, setMessages] = useState([])
   const [selectedCustomer, setSelectedCustomer] = useState(null)
   const { authUser } = useContext(AuthContext)
+  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  console.log('isSwitchOn',isSwitchOn);
+  
   const ref = useRef(null)
 
   useEffect(() => {
@@ -35,10 +39,19 @@ export const ChatContextProvider = ({ children }) => {
 
   const fetchMessages = async () => {
     if (selectedConversation) {
-      const { messages } =
+      if (isSwitchOn == false) {
+        const { messages } =
         selectedConversation.type === 'instagram'
           ? await getMessagesFromInsta(selectedConversation._id)
           : await getMessagesFromMessenger(selectedConversation._id)
+      }
+      else {
+        const { messages } =
+        selectedConversation.type === 'instagram'
+          ? await getMessagesFromInsta(selectedConversation._id)
+          : await getMessagesFromBOT(selectedConversation._id)
+      }
+
 
       console.log('Fetch>>>', messages)
       setMessages([...messages.reverse()])
@@ -100,6 +113,8 @@ export const ChatContextProvider = ({ children }) => {
         setSelectedCustomer,
         sendMessage,
         fetchMessages,
+        isSwitchOn,
+        setIsSwitchOn
       }}
     >
       {children}

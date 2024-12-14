@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import styles from './ChatMain.module.css'
 import ChatHeader from './ChatHeader'
 import ChatThread from './ChatThread'
@@ -9,7 +9,7 @@ import useListenMessages from '../../hooks/useListenNewMessages'
 
 function ChatMain({prop}) {
   console.log('chat main')
-  const { selectedConversation, messages } = useContext(ChatContext)
+  const { selectedConversation, messages,isSwitchOn ,setIsSwitchOn} = useContext(ChatContext)   
   const lastMessageRef = useRef()
   useEffect(() => {
     setTimeout(() => {

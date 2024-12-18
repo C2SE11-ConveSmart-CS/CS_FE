@@ -20,7 +20,6 @@ export const ChatContextProvider = ({ children }) => {
   const [selectedCustomer, setSelectedCustomer] = useState(null)
   const { authUser } = useContext(AuthContext)
   const [isSwitchOn, setIsSwitchOn] = useState(false);
-  console.log('isSwitchOn',isSwitchOn);
   
   const ref = useRef(null)
 
@@ -48,7 +47,7 @@ export const ChatContextProvider = ({ children }) => {
       else {
         const { messages } =
         selectedConversation.type === 'instagram'
-          ? await getMessagesFromInsta(selectedConversation._id)
+          ? await getMessagesFromBOTInsta(selectedConversation._id)
           : await getMessagesFromBOT(selectedConversation._id)
       }
 

@@ -37,3 +37,12 @@ export const getMessagesFromBOT = async conversationId => {
     throw err.response.data.msg
   }
 }
+
+export const getMessagesFromBOTInsta = async conversationId => {
+  try {
+    const resp = await customFetch.get(`/insta/messages/bot/${conversationId}`)
+    return resp?.data
+  } catch (err) {
+    throw err.response.data.msg
+  }
+}

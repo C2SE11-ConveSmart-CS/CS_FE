@@ -9,9 +9,9 @@ const menuItems = [
     route: '/dashboard', // Thêm route cho "Tổng quan"
   },
   {
-    label: 'Khách hàng',
+    label: 'Đơn hàng',
     icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/23ee01b62a9efeb112d21166481d43f543bd0397970d8491aa8838216664d87e?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-    route: '/customers', // Ví dụ thêm route cho "Khách hàng"
+    route: '/orderdashboard', // Ví dụ thêm route cho "Khách hàng"
   },
   {
     label: 'Hội thoại đa kênh',

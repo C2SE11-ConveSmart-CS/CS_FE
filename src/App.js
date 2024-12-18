@@ -6,7 +6,7 @@ import {
   Route,
   Routes,
 } from 'react-router-dom'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
 import { AuthContext } from './contexts/AuthContext'
 import ChatInterface from './pages/ChatInterface/ChatInterface'
 import { DashboardLayout } from './pages/dashboard/components/DashboardLayout'
@@ -38,17 +38,15 @@ const App = () => {
           <Route path="Profile" element={<ProfileAccount />} />
           <Route path="ChangePassword" element={<ChangePassword />} />
           <Route path="Conversations" element={<ChatInterface />} />
-          
+          <Route path="OrderDashboard" element={<Dashboard />} />
         </Route>
         {/* Các route không yêu cầu xác thực */}
         <Route path="/Landing" element={<Landing />} />{' '}
-        <Route path="OrderDashboard" element={<Dashboard />} />
         {/* Trang mặc định khi chưa đăng nhập */}
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Forgotpassword" element={<ForgotPassword />} />
         <Route path="*" element={<NotFound />} />
-        
       </Routes>
     </BrowserRouter>
   )

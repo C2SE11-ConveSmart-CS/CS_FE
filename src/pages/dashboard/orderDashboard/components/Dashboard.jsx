@@ -3,9 +3,11 @@ import { FaShoppingCart, FaShoppingBag, FaDollarSign } from 'react-icons/fa';
 import MetricCard from './MetricCard';
 import OrdersTable from './OrdersTable';
 import './Dashboard.css';
+import Layout from '../../../../components/Layout/Layout';
 
 const Dashboard = () => {
   return (
+    <Layout>
     <div className="dashboard">
       <h1>Hello Evana 👋</h1>
       
@@ -32,6 +34,7 @@ const Dashboard = () => {
       
       <OrdersTable />
     </div>
+    </Layout>
   );
 };
 

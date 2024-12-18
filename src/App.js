@@ -38,13 +38,13 @@ const App = () => {
           <Route path="Dashboard" element={<DashboardLayout />} />
           <Route path="Profile" element={<ProfileAccount />} />
           <Route path="ChangePassword" element={<ChangePassword />} />
+          <Route path="OrderDashboard" element={<Dashboard />} />
+          <Route path="Conversations" element={<ChatInterface />} />
           
           
         </Route>
         {/* Các route không yêu cầu xác thực */}
         <Route path="/Landing" element={<Landing />} />{' '}
-        <Route path="OrderDashboard" element={<Dashboard />} />
-        <Route path="Conversations" element={<ChatInterface />} />
         <Route path="chay" element={<ChatHeader />} />
         {/* Trang mặc định khi chưa đăng nhập */}
         <Route path="/SignIn" element={<SignIn />} />

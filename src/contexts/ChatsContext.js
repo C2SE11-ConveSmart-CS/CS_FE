@@ -7,7 +7,8 @@ import { createContext, useState, useContext, useEffect, useRef } from 'react'
 import {
   getMessagesFromInsta,
   getMessagesFromMessenger,
-  getMessagesFromBOT
+  getMessagesFromBOT,
+  getMessagesFromBOTInsta
 } from '../services/api/conversation'
 import { baseURL } from '../utils/axios'
 

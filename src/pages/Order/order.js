@@ -1,4 +1,29 @@
+import { useState } from 'react'
+
 const OrderPage = () => {
+  const [goodsList, setGoodsList] = useState([
+    { name: '', quantity: '', weight: '', value: '' },
+  ])
+
+  const addGoodsRow = () => {
+    setGoodsList([
+      ...goodsList,
+      { name: '', quantity: '', weight: '', value: '' },
+    ])
+  }
+
+  const handleInputChange = (index, field, value) => {
+    const updatedGoodsList = goodsList.map((goods, i) =>
+      i === index ? { ...goods, [field]: value } : goods
+    )
+    setGoodsList(updatedGoodsList)
+  }
+
+  const deleteGoodsRow = index => {
+    const updatedGoodsList = goodsList.filter((_, i) => i !== index)
+    setGoodsList(updatedGoodsList)
+  }
+
   return (
     <>
       <div
@@ -96,6 +121,7 @@ const OrderPage = () => {
                         <option>Tỉnh/Thành Phố</option>
                         <option>Hà Nội</option>
                         <option>Hồ Chí Minh</option>
+                        <option>Đà Nẵng</option>
                       </select>
                       <select
                         style={{
@@ -108,6 +134,7 @@ const OrderPage = () => {
                         <option>Quận/Huyện</option>
                         <option>Liên Chiểu</option>
                         <option>Thanh Khê</option>
+                        <option>Hoà Vang</option>
                       </select>
                     </div>
                     <div style={{ width: '100%' }} className="flex gap-3">
@@ -122,6 +149,7 @@ const OrderPage = () => {
                         <option>Xã/Phường</option>
                         <option>Hoà Minh</option>
                         <option>Hoà Khánh Bắc</option>
+                        <option>Hoà Khánh Nam</option>
                       </select>
                       <select
                         style={{
@@ -132,8 +160,8 @@ const OrderPage = () => {
                         }}
                       >
                         <option>Thôn/Xóm</option>
-                        <option>Xóm Bò</option>
-                        <option>Xóm gà</option>
+                        <option>Xóm A</option>
+                        <option>Xóm B</option>
                       </select>
                     </div>
                   </div>
@@ -151,9 +179,14 @@ const OrderPage = () => {
                     }}
                   >
                     <option>Cả ngày</option>
-                    <option>Sáng</option>
-                    <option>Chiều</option>
-                    <option>Tối</option>
+                    <option>Sáng(7h30 - 12h)</option>
+                    <option>Chiều(13h30 - 18h)</option>
+                    <option>Tối(18h30 - 21h)</option>
+                    <option>
+                      Giờ hành chính(7h-30 - 11h30; 13h30 - 17h30)
+                    </option>
+                    <option>Chủ nhật</option>
+                    <option>Ngày nghỉ lễ</option>
                   </select>
                 </div>
               </div>
@@ -231,75 +264,137 @@ const OrderPage = () => {
                 </div>
               </div>
             </div>
-            <div
-              className="flex flex-row mx-[20px]"
-              style={{ borderBottom: '1px solid #ebedef', paddingTop: '20px' }}
-            >
-              <div className="w-[300px]">Tên Hàng 1 *</div>
-              <div
-                className="flex items-center gap-2 w-[100%]"
-                style={{ paddingBottom: '20px' }}
-              >
-                <div className="flex flex-col gap-3 w-[100%]">
-                  <input
-                    type="text"
-                    style={{
-                      width: '100%',
-                      border: '1px solid gray',
-                      height: '40px',
-                      borderRadius: '3px',
-                    }}
-                    placeholder="Nhập tên hàng hoá"
-                  />
-                  <div style={{ width: '100%' }} className="flex gap-3">
-                    <input
-                      type="text"
-                      style={{
-                        width: '100%',
-                        border: '1px solid gray',
-                        height: '40px',
-                        borderRadius: '3px',
-                      }}
-                      placeholder="Số lượng"
-                    />
-                    <input
-                      type="text"
-                      style={{
-                        width: '100%',
-                        border: '1px solid gray',
-                        height: '40px',
-                        borderRadius: '3px',
-                      }}
-                      placeholder="Trọng lượng"
-                    />
-                    <input
-                      type="text"
-                      style={{
-                        width: '100%',
-                        border: '1px solid gray',
-                        height: '40px',
-                        borderRadius: '3px',
-                      }}
-                      placeholder="Giá trị hàng"
-                    />
+            <div className="max-h-96 overflow-auto">
+              {goodsList.map((goods, index) => (
+                <div
+                  key={index}
+                  className="flex flex-row mx-[20px]"
+                  style={{
+                    borderBottom: '1px solid #ebedef',
+                    paddingTop: '20px',
+                    position: 'relative',
+                  }}
+                >
+                  <div className="w-[300px]">Tên Hàng {index + 1} *</div>
+                  <div
+                    className="flex items-center gap-2 w-[100%]"
+                    style={{ paddingBottom: '20px' }}
+                  >
+                    <div className="flex flex-col gap-3 w-[100%]">
+                      <input
+                        type="text"
+                        style={{
+                          width: '100%',
+                          border: '1px solid gray',
+                          height: '40px',
+                          borderRadius: '3px',
+                        }}
+                        placeholder="Nhập tên hàng hoá"
+                        value={goods.name}
+                        onChange={e =>
+                          handleInputChange(index, 'name', e.target.value)
+                        }
+                      />
+                      <div style={{ width: '100%' }} className="flex gap-3">
+                        <input
+                          type="text"
+                          style={{
+                            width: '100%',
+                            border: '1px solid gray',
+                            height: '40px',
+                            borderRadius: '3px',
+                          }}
+                          placeholder="Số lượng"
+                          value={goods.quantity}
+                          onChange={e =>
+                            handleInputChange(index, 'quantity', e.target.value)
+                          }
+                        />
+                        <input
+                          type="text"
+                          style={{
+                            width: '100%',
+                            border: '1px solid gray',
+                            height: '40px',
+                            borderRadius: '3px',
+                          }}
+                          placeholder="Trọng lượng"
+                          value={goods.weight}
+                          onChange={e =>
+                            handleInputChange(index, 'weight', e.target.value)
+                          }
+                        />
+                        <input
+                          type="text"
+                          style={{
+                            width: '100%',
+                            border: '1px solid gray',
+                            height: '40px',
+                            borderRadius: '3px',
+                          }}
+                          placeholder="Giá trị hàng"
+                          value={goods.value}
+                          onChange={e =>
+                            handleInputChange(index, 'value', e.target.value)
+                          }
+                        />
+                        {index > 0 && (
+                          <button
+                            className="text-[red] absolute top-1 -right-1"
+                            onClick={() => deleteGoodsRow(index)}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke-width="1.5"
+                              stroke="currentColor"
+                              class="size-6"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                              />
+                            </svg>
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div
-              className="flex flex-row m-[20px] justify-center items-center "
-              style={{
-                borderBottom: '1px solid #ebedef',
-                paddingBottom: '20px',
-              }}
-            >
+              ))}
               <div
-                className="w-[200px] flex justify-center items-center h-[40px] text-[#ee1c4d]"
-                style={{ border: '1px solid #ee1c4d', borderRadius: '5px' }}
+                className="flex flex-row m-[20px] justify-center items-center"
+                style={{
+                  borderBottom: '1px solid #ebedef',
+                  paddingBottom: '20px',
+                }}
               >
-                Thêm hàng hoá
+                <button
+                  onClick={addGoodsRow}
+                  className="w-[200px] flex justify-center items-center h-[40px] text-[#ee1c4d] cursor-pointer"
+                  style={{ border: '1px solid #ee1c4d', borderRadius: '5px' }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                  Thêm hàng hoá
+                </button>
               </div>
             </div>
+
             <div className="flex flex-row h-[60px] justify-around  items-center p-[20px]">
               <div className="w-[300px]">Tổng khối lượng</div>
               <div className="flex justify-end items-center gap-2 w-[100%]">
@@ -332,7 +427,6 @@ const OrderPage = () => {
                       type="checkbox"
                       id="gia-tri-cao"
                       name="hang-dat-biet"
-                      checked
                     />
                     <label htmlFor="gia-tri-cao">Giá trị cao</label>
                   </div>
@@ -343,25 +437,24 @@ const OrderPage = () => {
                   <div className="flex-1 flex items-center gap-2 w-[100%]">
                     <input
                       type="checkbox"
-                      id="nguyen-khoi"
+                      id="nguyen-khoi1"
                       name="hang-dat-biet"
                     />
-                    <label htmlFor="nguyen-khoi">Nguyên Khối</label>
+                    <label htmlFor="nguyen-khoi1">Nguyên Khối</label>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <div className="flex-1 flex items-center gap-2 w-[100%]">
                     <input
                       type="checkbox"
-                      id="gia-tri-cao"
+                      id="gia-tri-cao1"
                       name="hang-dat-biet"
-                      checked
                     />
-                    <label htmlFor="gia-tri-cao">Quá khổ</label>
+                    <label htmlFor="gia-tri-cao1">Quá khổ</label>
                   </div>
                   <div className="flex-1 flex items-center gap-2 w-[100%]">
-                    <input type="checkbox" id="de-vo" name="hang-dat-biet" />
-                    <label htmlFor="de-vo">Chất lỏng</label>
+                    <input type="checkbox" id="de-vo1" name="hang-dat-biet" />
+                    <label htmlFor="de-vo1">Chất lỏng</label>
                   </div>
                   <div className="flex-1 flex items-center gap-2 w-[100%]">
                     <input
@@ -376,11 +469,10 @@ const OrderPage = () => {
                   <div className="flex-1 flex items-center gap-2 w-[100%]">
                     <input
                       type="checkbox"
-                      id="gia-tri-cao"
+                      id="gia-tri-cao2"
                       name="hang-dat-biet"
-                      checked
                     />
-                    <label htmlFor="gia-tri-cao">Hàng lạnh</label>
+                    <label htmlFor="gia-tri-cao2">Hàng lạnh</label>
                   </div>
                   <div className="flex-1 flex items-center gap-2 w-[100%]"></div>
                   <div className="flex-1 flex items-center gap-2 w-[100%]"></div>
@@ -488,9 +580,8 @@ const OrderPage = () => {
                       type="checkbox"
                       id="tien-thu-ho"
                       name="tien-thu-ho"
-                      checked
                     />
-                    Thu hộ bằng tiền hàng
+                    <label htmlFor="tien-thu-ho">Thu hộ bằng tiền hàng</label>
                   </div>
                 </div>
               </div>
@@ -566,13 +657,8 @@ const OrderPage = () => {
               >
                 <div className="flex flex-col gap-3 w-[100%]">
                   <div className="flex items-center gap-2 w-[100%]">
-                    <input
-                      type="checkbox"
-                      id="save-info"
-                      name="save-info"
-                      checked
-                    />
-                    Lưu thông tin đơn hàng
+                    <input type="checkbox" id="save-info" name="save-info" />
+                    <label htmlFor="save-info">Lưu thông tin đơn hàng</label>
                   </div>
                 </div>
               </div>
@@ -606,7 +692,7 @@ const OrderPage = () => {
         </div>
         <div style={{ flex: 2, border: '1px solid #ebedef', padding: '10px' }}>
           <div className="flex-1 flex items-center gap-2 w-[100%]">
-            <input type="checkbox" id="agree" name="agree" checked />
+            <input type="checkbox" id="agree" name="agree" />
             <label htmlFor="agree">
               Tôi đã đọc và đồng ý với Điều khoản quy định
             </label>

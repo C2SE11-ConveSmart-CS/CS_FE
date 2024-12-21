@@ -45,7 +45,6 @@ const App = () => {
         </Route>
         {/* Các route không yêu cầu xác thực */}
         <Route path="/Landing" element={<Landing />} />{' '}
-        <Route path="chay" element={<ChatHeader />} />
         {/* Trang mặc định khi chưa đăng nhập */}
         <Route path="/SignIn" element={<SignIn />} />
         <Route path="/SignUp" element={<SignUp />} />

@@ -18,6 +18,7 @@ import ProfileAccount from './pages/Profile Account/ProfileAccount'
 import SignIn from './pages/SignIn/SignIn'
 import SignUp from './pages/SignUp/SignUp'
 import Dashboard from './pages/dashboard/orderDashboard/components/Dashboard'
+import ChatPopover from './components/ChatPopup/ChatPopover'
 
 // Bảo vệ route với xác thực
 const AuthenUser = () => {
@@ -48,6 +49,7 @@ const App = () => {
         <Route path="/Forgotpassword" element={<ForgotPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ChatPopover></ChatPopover>
     </BrowserRouter>
   )
 }

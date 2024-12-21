@@ -1,9 +1,9 @@
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { SignInWrapper } from './SignInWrapper'
-import React, { useContext, useEffect, useState } from 'react'
-import { signIn } from '../../services/api/authen'
+import { toast } from 'react-toastify'
 import { AuthContext } from '../../contexts/AuthContext'
-import { io } from 'socket.io-client'
+import { signIn } from '../../services/api/authen'
+import { SignInWrapper } from './SignInWrapper'
 
 const SignIn = () => {
   const { reloadUser } = useContext(AuthContext)
@@ -27,14 +27,21 @@ const SignIn = () => {
       })
       if (data) {
         reloadUser()
+        toast.success('Đăng nhập thành công')
+        if (data.role === 'admin') {
+          navigate('/dashboard')
+          return
+        }
         navigate('/Conversations') // Chuyển hướng đến ChatInterface
       }
     } catch (error) {
+      console.log(error)
+
       // Đăng nhập không thành công
-      if (error && error.response && error.response.data) {
-        setErrorMessage(error.response.data.message) // Lấy thông điệp lỗi từ phản hồi
+      if (error && error.message) {
+        toast.error(error.message)
       } else {
-        setErrorMessage('Lỗi máy chủ, vui lòng thử lại sau.') // Thông báo lỗi chung
+        toast.error('Lỗi máy chủ, vui lòng thử lại sau.')
       }
     }
   }

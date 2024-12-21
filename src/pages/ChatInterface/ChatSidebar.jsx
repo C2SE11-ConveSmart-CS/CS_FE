@@ -8,7 +8,32 @@ function ChatSidebar({ prop }) {
   const [searchTerm, setSearchTerm] = useState('') // State để lưu giá trị tìm kiếm
 
   if (loading) {
-    return <div>Loading...</div>
+    return (
+      <div
+        style={{
+          top: 0,
+          left: 0,
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          background: 'rgba(65, 60, 60, 0.6)',
+        }}
+      >
+        <div
+          class="spinner-border text-primary"
+          role="status"
+          style={{
+            position: 'absolute',
+            display: 'block',
+          }}
+        >
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    )
   }
 
   // Sắp xếp các hội thoại theo thời gian
@@ -17,11 +42,11 @@ function ChatSidebar({ prop }) {
   )
 
   // Lọc các hội thoại dựa trên từ khóa tìm kiếm
-  const filteredConversations = sortedConversations.filter((c) => 
-    !searchTerm || (c.name && c.name.toLowerCase().includes(searchTerm.toLowerCase()))
-  );
-  
-  
+  const filteredConversations = sortedConversations.filter(
+    c =>
+      !searchTerm ||
+      (c.name && c.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  )
 
   return (
     <aside className={styles.sidebar}>
@@ -47,7 +72,7 @@ function ChatSidebar({ prop }) {
               placeholder="Tìm kiếm"
               className={styles.searchField}
               value={searchTerm} // Giá trị nhập
-              onChange={(e) => setSearchTerm(e.target.value)} // Cập nhật từ khóa tìm kiếm
+              onChange={e => setSearchTerm(e.target.value)} // Cập nhật từ khóa tìm kiếm
             />
           </div>
           <button className={styles.filterButton}>
@@ -60,7 +85,7 @@ function ChatSidebar({ prop }) {
         </div>
       </header>
       <nav className={styles.chatList}>
-        {filteredConversations.map((c) => (
+        {filteredConversations.map(c => (
           <ChatListItem
             key={c.id}
             _id={c.id}

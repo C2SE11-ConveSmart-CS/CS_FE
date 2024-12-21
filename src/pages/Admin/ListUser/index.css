@@ -1,0 +1,36 @@
+.user-management-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 12px;
+
+  & > .user-management-header {
+    color: var(--Primary-Grey-grey-900, #2c2e32);
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  & > .user-management-search {
+    padding: 10px;
+    border: 1px solid #f5cccc;
+    border-radius: 12px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+
+    .dropdown > button {
+      width: 120px;
+    }
+  }
+
+  & > .user-management-table {
+    padding: 10px;
+    border: 1px solid #f5cccc;
+    border-radius: 12px;
+
+    & > thead {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+  }
+}

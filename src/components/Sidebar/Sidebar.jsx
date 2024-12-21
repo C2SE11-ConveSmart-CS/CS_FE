@@ -1,13 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link
-import styles from './Sidebar.module.css';
+import React, { useContext, useMemo } from 'react'
+import { Link } from 'react-router-dom' // Import Link
+import styles from './Sidebar.module.css'
+import { AuthContext } from '../../contexts/AuthContext'
 
 const menuItems = [
-  {
-    label: 'Tổng quan',
-    icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/886101deab7e20e359e761740ebf52dcfd1db223a9856394124b42cfa79b02a1?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
-    route: '/dashboard', // Thêm route cho "Tổng quan"
-  },
   {
     label: 'Đơn hàng',
     icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/23ee01b62a9efeb112d21166481d43f543bd0397970d8491aa8838216664d87e?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
@@ -23,25 +19,49 @@ const menuItems = [
     icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/5f9b46c0ff4fba6636c5b995018f2a174cacbf0ac12286af82187fe8dcf8b876?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
     route: '/automation', // Ví dụ thêm route cho "Quy trình tự động"
   },
-];
+]
+
+const adminMenuItems = [
+  {
+    label: 'Tổng quan',
+    icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/886101deab7e20e359e761740ebf52dcfd1db223a9856394124b42cfa79b02a1?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
+    route: '/dashboard', // Thêm route cho "Tổng quan"
+  },
+  {
+    label: 'Quản lý user',
+    icon: 'https://cdn.builder.io/api/v1/image/assets/TEMP/886101deab7e20e359e761740ebf52dcfd1db223a9856394124b42cfa79b02a1?placeholderIfAbsent=true&apiKey=96d3f0d387684778814e4c6d174285fa',
+    route: '/account-management', // Route "quản lý account"
+  },
+]
 
 const Sidebar = () => {
+  const { roleUser } = useContext(AuthContext)
+  const menu = useMemo(() => {
+    if (roleUser !== 'admin') return menuItems
+    return adminMenuItems
+  }, [roleUser])
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.logo}>
-        <img 
-          src="CONVESMART.png" 
-          alt="Logo ConveSmart" 
-          className={styles.logoImage} 
+        <img
+          src="CONVESMART.png"
+          alt="Logo ConveSmart"
+          className={styles.logoImage}
           width="40"
         />
       </div>
 
       <nav className={styles.lists}>
         <div className={styles.mainMenu}>
-          {menuItems.map((item, index) => (
-            <Link to={item.route} key={index} className={styles.menuItem}> {/* Sử dụng Link để điều hướng */}
-              <img loading="lazy" src={item.icon} className={styles.menuIcon} alt={item.label} />
+          {menu.map((item, index) => (
+            <Link to={item.route} key={index} className={styles.menuItem}>
+              <img
+                loading="lazy"
+                src={item.icon}
+                className={styles.menuIcon}
+                alt={item.label}
+              />
               <div className={styles.menuLabel}>{item.label}</div>
             </Link>
           ))}
@@ -54,7 +74,7 @@ const Sidebar = () => {
         />
       </nav>
     </aside>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

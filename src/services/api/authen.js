@@ -21,13 +21,14 @@ export const signIn = async ({ email, password }) => {
       password,
     })
     if (resp.status === 200) {
-      const { token, userId, username } = resp.data
+      const { token, userId, username, role } = resp.data
       localStorage.setItem('token', token)
       localStorage.setItem('userId', userId)
       localStorage.setItem('username', username)
-      return true
+      localStorage.setItem('role', role)
+      return resp.data
     }
   } catch (err) {
-    throw err.response.data.msg
+    throw err.response.data
   }
 }

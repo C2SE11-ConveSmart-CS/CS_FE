@@ -8,10 +8,19 @@ const useConversation = () => {
   const [conversations, setConversations] = useState([])
   const { authUser } = useContext(AuthContext)
 
-  useEffect(()=>{
-    setInterval(async()=>{
+  const getData = async () => {
+    setLoading(true)
+    try {
       const data = await getAllConversations()
       setConversations(data.chats)
+    } catch (err) {}
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    getData()
+    setInterval(async () => {
+      getData()
     }, 15000)
   }, [])
 

@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { SignUpWrapper } from './SignUpWrapper'
 import { Link, useNavigate } from 'react-router-dom' // Thêm useNavigate
-import axios from 'axios'
+import { toast } from 'react-toastify'
 import { signUp } from '../../services/api/authen'
+import { SignUpWrapper } from './SignUpWrapper'
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -39,7 +39,7 @@ const SignUp = () => {
         contactNumber,
       })
       if (data?.message) {
-        alert(data.message) // Hiển thị thông báo đăng ký thành công
+        toast.success(data.message) // Hiển thị thông báo đăng ký thành công
         navigate('/signin') // Chuyển hướng đến trang đăng nhập
       }
     } catch (error) {

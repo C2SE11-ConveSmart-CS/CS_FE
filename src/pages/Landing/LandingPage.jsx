@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import '/Users/ducgiang01/Desktop/src/CS_FE/src/pages/Landing/Landing.css';
+import './Landing.css';
 import { Services } from './Services';
 import { FaqSection } from './faq/FaqSection';
 import ContactForm from './contact/ContactForm';

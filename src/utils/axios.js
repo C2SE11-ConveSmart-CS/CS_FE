@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const baseURL = 'https://kindly-growing-bee.ngrok-free.app' //BACK_END_URL
+export const baseURL = 'https://goose-smooth-bulldog.ngrok-free.app' //BACK_END_URL
 
 const customFetch = axios.create({
   baseURL: `${baseURL}/api/`,
